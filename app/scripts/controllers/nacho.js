@@ -20,7 +20,7 @@ angular.module('nightlynachosApp')
     ];
     self.submit = function() {
       if (self.nacho) {
-        console.log(self.nacho)
+        self.nachos.push(self.nacho);
       }
     };
 });
