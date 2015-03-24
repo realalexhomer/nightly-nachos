@@ -8,12 +8,24 @@
 </div>
 
 <!-- TEST DATA -->
-<div ng-controller="RecipeListCtrl">
+<div ng-controller="NachoListCtrl as nachoCtrl">
+  <form ng-submit="nachoCtrl.submit()">
+    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required>
+    Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required>
+    Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags" required>
+    photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required>
+    <input type="submit" id="submit" value="Submit" />
+  </form>
+
+
+  <!-- SHOW NACHO RECIPES -->
 
   <ul>
-    <li ng-repeat="recipe in recipes">
-      <span>{{recipe.name}}</span>
-      <p>{{recipe.snippet}}</p>
+    <li ng-repeat="nacho in nachoCtrl.nachos">
+      <span>{{nacho.title}}</span>
+      <p>{{nacho.description}}</p>
+      <p>{{nacho.tags}}</p>
+      <img src="{{nacho.photos}}">
     </li>
   </ul>
 
