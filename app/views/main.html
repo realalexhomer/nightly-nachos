@@ -7,6 +7,18 @@
   <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
+<!-- TEST DATA -->
+<div ng-controller="RecipeListCtrl">
+
+  <ul>
+    <li ng-repeat="recipe in recipes">
+      <span>{{recipe.name}}</span>
+      <p>{{recipe.snippet}}</p>
+    </li>
+  </ul>
+
+</div>
+
 <div class="row marketing">
   <h4>Firebase</h4>
   <p>
