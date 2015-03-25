@@ -1,6 +1,6 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
   <form ng-submit="nachoCtrl.submit()">
-    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required>
+    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10">
     Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required>
     Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags" required>
     photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required>
