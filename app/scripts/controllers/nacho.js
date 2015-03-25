@@ -2,15 +2,10 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', 'simpleLogin', 'fbutil', 'validations', '$timeout', 
+  .controller('NachoListCtrl', ['$scope', 'simpleLogin', 'fbutil', 'validations', '$timeout',
     function ($scope, simpleLogin, fbutil, validations, $timeout) {
       var user = simpleLogin.user
       if (!simpleLogin.user) console.log('you imposter')
-      console.log(simpleLogin.user)
-      validations.test();
-
-      console.log(simpleLogin.auth.$requireAuth());
-      console.log(simpleLogin.auth.$requireAuth().$$state )
     self = this;
 
     var nachosRef = fbutil.ref().child('nachos');
