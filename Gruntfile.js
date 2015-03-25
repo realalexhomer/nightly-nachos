@@ -9,6 +9,7 @@
 
 module.exports = function (grunt) {
 
+grunt.option('color', false);
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 

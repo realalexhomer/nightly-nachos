@@ -2,25 +2,37 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', function ($scope) {
+  .controller('NachoListCtrl', ['$scope', 'fbutil', '$timeout', 
+    function ($scope, fbutil, $timeout) {
+
     self = this;
-    self.nacho = {title: "",
-      description: "",
-      tags: [],
-      photos: []};
-    self.nachos = [
-      {'title': 'Delicious nachos',
-       'description': 'Say cheese!',
-        'tags': 'Say cheese!',
-        'photos': ''},
-      {'title': 'Chocolate Covered Nachos',
-       'description': 'What do you get when you combine chocolate with cheese??'},
-      {'title': 'DBC Nachos',
-       'description': 'Beautiful and meaningful things.'}
-    ];
+
+    var nachosRef = fbutil.ref().child("nachos");
+    self.nachos = fbutil.syncObject('nachos', {limitToLast: 500});
+    self.nachos.$loaded().catch(alert);
+
     self.submit = function() {
       if (self.nacho) {
-        self.nachos.push(self.nacho);
+        postNacho(self.nacho);
       }
     };
-});
+
+    function postNacho(newNacho) {
+      if (typeof newNacho.title === 'string') {
+        var key = nachosRef.push(newNacho).key();
+        console.log(key)
+      }
+    }
+
+    self.editNacho = function(nacho){
+      putNacho(nacho);
+    }
+
+    function putNacho(nacho) {
+      if (typeof nacho.title === 'string') {
+        console.log();
+        // var indNachoRef = nachosRef.child(nacho.)
+      }
+    }
+
+}]);

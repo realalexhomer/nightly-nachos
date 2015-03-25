@@ -1,11 +1,26 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
   padding-bottom: 20px;
+  margin: 0;
+  /*background-image: url("/images/night-background.png");*/
+}
+
+
+.nav {
+  height: 60px;
+  margin: 0;
+  width: 100%;
+  list-style-type: none;
+  background-color: #F8F69F;
+  border-bottom: 3px solid #BAB986;
+  padding: 0;
+}
+
+.nav li {
+  display: inline;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
 .marketing,
 .footer {
   padding-left: 15px;
@@ -14,6 +29,7 @@ body {
 
 /* Custom page header */
 .header {
+  margin: 0;
   border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
