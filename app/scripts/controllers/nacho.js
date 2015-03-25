@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
 
 angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', 'fbutil', '$timeout', 
     function ($scope, fbutil, $timeout) {
 
-    self = this;
+    var self = this;
 
-    var nachosRef = fbutil.ref().child("nachos");
+    var nachosRef = fbutil.ref().child('nachos');
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 500});
     self.nachos.$loaded().catch(alert);
 
@@ -30,7 +30,7 @@ angular.module('nightlynachosApp')
 
     self.editNacho = function(nacho){
       putNacho(nacho);
-    }
+    };
 
     function putNacho(nacho) {
       if (typeof nacho.title === 'string') {
@@ -38,12 +38,19 @@ angular.module('nightlynachosApp')
       }
     }
 
-    self.deleteNacho = function (nacho) {
+    self.deleteNacho = function(nacho) {
       removeNacho(nacho);
-    }
+    };
 
     function removeNacho(nacho) {
       self.nachos.$remove(nacho);
+    }
+
+    function alert(msg) {
+      $scope.err = msg;
+      $timeout(function() {
+        $scope.err = null;
+      }, 5000);
     }
 
 }]);
