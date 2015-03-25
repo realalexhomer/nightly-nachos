@@ -25,9 +25,20 @@
       <span>{{nacho.title}}</span>
       <p>{{nacho.description}}</p>
       <p>{{nacho.tags}}</p>
-      <p ng-click="nachoCtrl.editNacho(nacho)">edit</p>
+      <p ng-click="nachoCtrl.deleteNacho(nacho)">delete</p>
+      <p ng-click="nachoCtrl.showEditor(nacho)">edit</p>
       <img src="{{nacho.photos}}">
     </li>
+
+    <form ng-show= "nachoCtrl.editing" ng-submit="nachoCtrl.editNacho(nachoCtrl.nachoToEdit)">
+      Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nachoToEdit.title" required>
+      Description: <input type="text" name="description" ng-model="nachoCtrl.nachoToEdit.description" required>
+      Tags: <input type="text" name="tags" ng-model="nachoCtrl.nachoToEdit.tags" required>
+      photos: <input type="text" name="photos" ng-model="nachoCtrl.nachoToEdit.photos" required>
+      <input type="submit" id="submit" value="Edit" />
+    </form>
+
+
   </ul>
 
 </div>
