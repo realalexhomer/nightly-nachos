@@ -17,5 +17,5 @@ angular.module('nightlynachosApp', [
     'ngTouch',
     'firebase',
     'firebase.utils',
-    'simpleLogin'
+    'simpleLogin',
   ]);

@@ -2,10 +2,16 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', 'fbutil', '$timeout', 
-    function ($scope, fbutil, $timeout) {
+  .controller('NachoListCtrl', ['$scope', 'simpleLogin', 'fbutil', 'validations', '$timeout', 
+    function ($scope, simpleLogin, fbutil, validations, $timeout) {
+      var user = simpleLogin.user
+      if (!simpleLogin.user) console.log('you imposter')
+      console.log(simpleLogin.user)
+      validations.test();
 
-    var self = this;
+      console.log(simpleLogin.auth.$requireAuth());
+      console.log(simpleLogin.auth.$requireAuth().$$state )
+    self = this;
 
     var nachosRef = fbutil.ref().child('nachos');
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 500});
@@ -13,11 +19,13 @@ angular.module('nightlynachosApp')
 
     self.submit = function() {
       if (self.nacho) {
+        self.nacho.userId = user.uid;
         postNacho(self.nacho);
       }
     };
 
     function postNacho(newNacho) {
+
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
       }
