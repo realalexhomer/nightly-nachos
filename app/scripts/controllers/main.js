@@ -12,8 +12,6 @@ angular.module('nightlynachosApp')
   .controller('MainCtrl', ['$scope', 'fbutil', '$timeout',
    function($scope, fbutil, $timeout) {
 
-    console.log(fbutil);
-
     self = this;
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 500});
 
