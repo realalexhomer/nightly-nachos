@@ -13,6 +13,14 @@ angular.module('firebase.utils', ['firebase', 'firebase.config'])
         return syncData.apply(null, arguments).$asArray();
       },
 
+      onComplete: function(error) {
+        if (error) {
+          console.log('Synchronization failed');
+        } else {
+          console.log('Synchronization succeeded');
+        }
+      },
+
       ref: firebaseRef
     };
 
@@ -27,6 +35,9 @@ angular.module('firebase.utils', ['firebase', 'firebase.config'])
       }
       return args.join('/');
     }
+
+
+
 
     /**
      * Example:

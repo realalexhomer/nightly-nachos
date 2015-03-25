@@ -8,7 +8,7 @@ angular.module('nightlynachosApp')
     self = this;
 
     var nachosRef = fbutil.ref().child("nachos");
-    self.nachos = fbutil.syncObject('nachos', {limitToLast: 500});
+    self.nachos = fbutil.syncArray('nachos', {limitToLast: 500});
     self.nachos.$loaded().catch(alert);
 
     self.submit = function() {
@@ -19,10 +19,14 @@ angular.module('nightlynachosApp')
 
     function postNacho(newNacho) {
       if (typeof newNacho.title === 'string') {
-        var key = nachosRef.push(newNacho).key();
-        console.log(key)
+        nachosRef.push(newNacho);
       }
     }
+
+    self.showEditor = function(nacho){
+      self.nachoToEdit = nacho;
+      self.editing = !self.editing;
+    };
 
     self.editNacho = function(nacho){
       putNacho(nacho);
@@ -30,9 +34,16 @@ angular.module('nightlynachosApp')
 
     function putNacho(nacho) {
       if (typeof nacho.title === 'string') {
-        console.log();
-        // var indNachoRef = nachosRef.child(nacho.)
+        self.nachos.$save(nacho);
       }
+    }
+
+    self.deleteNacho = function (nacho) {
+      removeNacho(nacho);
+    }
+
+    function removeNacho(nacho) {
+      self.nachos.$remove(nacho);
     }
 
 }]);
