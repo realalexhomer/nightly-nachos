@@ -2,22 +2,31 @@
 body {
   padding-bottom: 20px;
   margin: 0;
-  /*background-image: url("/images/night-background.png");*/
+  background-image: url("/images/night-background.png");
+  color: white;
 }
 
 
-.nav {
+.header {
   height: 60px;
   margin: 0;
   width: 100%;
   list-style-type: none;
-  background-color: #F8F69F;
-  border-bottom: 3px solid #BAB986;
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
+  border-bottom: 3px solid white;
   padding: 0;
+  position: relative;
 }
 
 .nav li {
   display: inline;
+  float: left;
+}
+
+.nav li h1 {
+  color: blue;
+  text-align: center;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -33,7 +42,7 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
-.header h3 {
+.header h1 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
