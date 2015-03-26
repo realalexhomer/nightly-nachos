@@ -11,9 +11,7 @@ angular.module('nightlynachosApp')
     }
 
 
-    nachoReqs = {
-
-    }
 
 
   });
+
