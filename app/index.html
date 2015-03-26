@@ -11,7 +11,10 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/skeleton.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/nacho.css">
     <!-- endbuild -->
   </head>
   <body ng-app="nightlynachosApp" ng-controller="MainCtrl">
@@ -32,14 +35,14 @@
           <li><h1 class="text-muted">Nightly Nachos</h1></li>
         </ul>
     </div>
-    <div class="container">
+    <div class="main-container">
 
 
       <div ng-view=""></div>
 
-      <div class="footer">
+<!--       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team, and from Firebase</p>
-      </div>
+      </div> -->
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
