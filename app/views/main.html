@@ -8,15 +8,24 @@
   </form>
 
 
-  <ul>
-    <li ng-repeat="nacho in nachoCtrl.nachos">
-      <span>{{nacho.title}}</span>
+  <div class="nachos-wrapper seven columns">
+    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
+      <h3>{{nacho.title}}</h3>
       <p>{{nacho.description}}</p>
       <p>{{nacho.tags}}</p>
-      <p ng-click="nachoCtrl.deleteNacho(nacho)">delete</p>
-      <p ng-click="nachoCtrl.showEditor(nacho)">edit</p>
-      <img src="{{nacho.photos}}">
-    </li>
+      <img src="{{nacho.photos}}"><br>
+      <button ng-click="nachoCtrl.newComment()">comment</button>
+      <div ng-show="nachoCtrl.commenting">
+        <textarea ng-model="nachoCtrl.comment"></textarea>
+        <button ng-click="nachoCtrl.addComment(nacho, nachoCtrl.comment)">submit comment</button>
+      </div>
+      <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
+      <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+    </div>
+  </div>
+
+  <div class="chat-div four columns">
+  </div>
 
 
     <form ng-show= "nachoCtrl.editing" ng-submit="nachoCtrl.editNacho(nachoCtrl.nachoToEdit)">
