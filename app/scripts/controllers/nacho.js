@@ -4,8 +4,13 @@
 angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', 'simpleLogin', 'fbutil', 'validations', '$timeout',
     function ($scope, simpleLogin, fbutil, validations, $timeout) {
-      var user = simpleLogin.user
-      if (!simpleLogin.user) console.log('you imposter')
+
+
+
+    var user = simpleLogin.user
+
+    if (!simpleLogin.user) console.log('you imposter')
+      
     var self = this;
 
     var comment = "";
@@ -15,9 +20,7 @@ angular.module('nightlynachosApp')
 
     var commentRef = fbutil.ref().child('comments');
     self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
-    console.log(self.comments);
-    console.log(self.comments)
-
+    self.comments.$loaded().catch(alert);
 
     var nachosRef = fbutil.ref().child('nachos');
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
@@ -26,15 +29,10 @@ angular.module('nightlynachosApp')
     self.submit = function() {
       if (self.nacho) {
         self.nacho.userId = user.uid;
-        console.log(self.nacho)
+        console.log('nacho submitted:', self.nacho)
         postNacho(self.nacho);
       }
     };
-
-    // function findChildren(commentObj){
-    //   for (var i = 0; i < )
-    //   // childObject.
-    // }
 
     function postNacho(newNacho) {
 
@@ -116,9 +114,23 @@ angular.module('nightlynachosApp')
       return comments.filter(findCommentsFilter(nachoId));
     };
 
-    console.log(self.findNachoComments('-JlHJWs-ip0M4Hiy6h6Q', self.comments));
+
+    console.log("self.comments:", self.comments); 
 
 
+    function findComments(arr, nacho){
+      var toReturn = [];
+      for (var i = 0; i < arr.length; i++){
+        console.log('wtf');
+        if (arr[i]) toReturn.push(arr[i]);
+      }
+      return toReturn;
+    }
 
+    commentRef.on('value', function(snapshot){
+    console.log('hi')
+    console.log("filtered:", self.findNachoComments('-JlHqWkA7UI_I3SDnSwf', self.comments));
+    console.log('another attempt:', findComments(self.comments, '-JlHqWkA7UI_I3SDnSwf'));
+    });
 
 }]);
