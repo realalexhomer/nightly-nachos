@@ -1,14 +1,14 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
-  <form ng-submit="nachoCtrl.submit()">
-    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10">
-    Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required>
-    Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags" required>
-    photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required>
-    <input type="submit" id="submit" value="Submit" />
-  </form>
 
 
   <div class="nachos-wrapper seven columns">
+    <form ng-submit="nachoCtrl.submit()">
+    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
+    Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
+    Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags" required><br>
+    photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required><br>
+    <input type="submit" id="submit" value="Submit" />
+  </form>
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
       <h3>{{nacho.title}}</h3>
       <p>{{nacho.description}}</p>
@@ -25,6 +25,7 @@
   </div>
 
   <div class="chat-div four columns">
+    <div ng-include src="'chat.html'"></div>
   </div>
 
 
