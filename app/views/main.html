@@ -21,6 +21,9 @@
       </div>
       <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
       <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+    <div class="comments-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
+      <p>{{comment.text}}</p>
+    </div>
     </div>
   </div>
 

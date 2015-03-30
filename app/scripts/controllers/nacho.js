@@ -5,10 +5,7 @@ angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', 'simpleLogin', 'fbutil', 'validations', '$timeout',
     function ($scope, simpleLogin, fbutil, validations, $timeout) {
 
-
-
     var user = simpleLogin.user
-
     if (!simpleLogin.user) console.log('you imposter')
       
     var self = this;
@@ -18,13 +15,13 @@ angular.module('nightlynachosApp')
 
     var ref = fbutil.ref();
 
-    var commentRef = fbutil.ref().child('comments');
-    self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
-    self.comments.$loaded().catch(alert);
-
     var nachosRef = fbutil.ref().child('nachos');
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
     self.nachos.$loaded().catch(alert);
+
+    var commentRef = fbutil.ref().child('comments');
+    self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
+    self.comments.$loaded().catch(alert);
 
     self.submit = function() {
       if (self.nacho) {
@@ -82,17 +79,6 @@ angular.module('nightlynachosApp')
       commentRef.push(comment);
     }
 
-    function getComment(nacho) {
-      ref = new Firebase("https://nightlynachos.firebaseio.com/comments");
-      ref.orderByChild("nachoId").on('value', function(snapshot) {
-        var commentsToReturn = new Array();
-        snapshot.forEach(function(childSnapshot){
-          commentsToReturn.push(childSnapshot.val());
-        })
-      return commentsToReturn;
-      });
-    };
-
     function alert(msg) {
       $scope.err = msg;
       $timeout(function() {
@@ -100,37 +86,15 @@ angular.module('nightlynachosApp')
       }, 5000);
     }
 
-    function findCommentsFilter(element, nachoId){
-      if (element.nachoId === nachoId) return element;
-    }
-
-    function findCommentsFilter(nachoId) {
-      return function(element) {
-        if (element.nachoId === nachoId) return element;
-      }
-    }
-
-    self.findNachoComments = function(nachoId, comments){
-      return comments.filter(findCommentsFilter(nachoId));
-    };
-
-
     console.log("self.comments:", self.comments); 
 
 
-    function findComments(arr, nacho){
+    self.findComments = function(arr, nacho){
       var toReturn = [];
       for (var i = 0; i < arr.length; i++){
-        console.log('wtf');
-        if (arr[i]) toReturn.push(arr[i]);
+        if (arr[i].nachoId === nacho) toReturn.push(arr[i]);
       }
       return toReturn;
     }
-
-    commentRef.on('value', function(snapshot){
-    console.log('hi')
-    console.log("filtered:", self.findNachoComments('-JlHqWkA7UI_I3SDnSwf', self.comments));
-    console.log('another attempt:', findComments(self.comments, '-JlHqWkA7UI_I3SDnSwf'));
-    });
 
 }]);
