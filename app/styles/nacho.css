@@ -11,6 +11,11 @@
   padding: 20px;
 }
 
+.chat {
+  font-family: 'Fredericka the Great', cursive;
+  text-align: center;
+}
+
 .chat-div ul {
   list-style-type: none;
 }
