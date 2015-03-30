@@ -10,25 +10,47 @@ body {
 .header {
   height: 60px;
   margin: 0;
+  top: 0;
   width: 100%;
   list-style-type: none;
   background:#7f7f7f;
   background:rgba(0,0,0,0.5);
   border-bottom: 3px solid white;
   padding: 0;
+  position: fixed;
+}
+
+.nav {
   position: relative;
 }
 
 .nav li {
   display: inline;
   float: left;
+  padding: 5px;
+  color: white;
+  vertical-align: center;
+  font-size: 30px;
+}
+
+.nav li a {
+  color: white;
+  text-decoration: none;
 }
 
 .nav li h1 {
-  color: blue;
-  text-align: center;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-family: 'Fredericka the Great', cursive;
+  transform: translate(-50%, 0);
 }
 
+.main-container {
+  margin-top: 60px;
+  padding: 20px;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .marketing,
 .footer {
@@ -42,12 +64,12 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
-.header h1 {
+/*.header h1 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
-}
+}*/
 
 /* Custom page footer */
 .footer {
