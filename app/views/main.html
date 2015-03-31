@@ -22,7 +22,7 @@
   </div>
   </form>
 
-    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
+    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:sortTags">
       <div class="nacho-header">
         <h3>{{nacho.title}}</h3>
       </div>
