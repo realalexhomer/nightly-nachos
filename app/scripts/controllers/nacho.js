@@ -33,13 +33,12 @@ angular.module('nightlynachosApp')
 
 
     function strToArray(str){
-      var array = string.split(', ');
+      var array = str.split(', ');
       return array;
     }
 
     function postNacho(newNacho) {
-
-      newNacho.pictures = strToArray(newNacho.pictures);
+      newNacho.photos = strToArray(newNacho.photos);
 
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
