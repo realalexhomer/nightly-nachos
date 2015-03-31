@@ -31,15 +31,19 @@ angular.module('nightlynachosApp')
       }
     };
 
-
     function strToArray(str){
-      var array = str.split(', ');
+      var array = [];
+      if (/.\, ./g.exec(str)){
+        array = str.split(', ');
+      }else{
+        array.push(str);
+      }
       return array;
     }
 
     function postNacho(newNacho) {
       newNacho.photos = strToArray(newNacho.photos);
-
+      newNacho.featuredPhoto = newNacho.photos[0];
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
       }
@@ -103,6 +107,10 @@ angular.module('nightlynachosApp')
       }
       return toReturn;
     }
+
+    self.featurePhoto =function(nacho, photo){
+      nacho.featuredPhoto = photo;
+    };
 
     /* Modal */
 
