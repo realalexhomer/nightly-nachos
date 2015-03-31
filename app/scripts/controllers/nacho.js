@@ -31,11 +31,13 @@ angular.module('nightlynachosApp')
       }
     };
 
-
     function strToArray(str){
       var array = str.split(', ');
       return array;
     }
+
+
+    
 
     function postNacho(newNacho) {
       newNacho.photos = strToArray(newNacho.photos);
