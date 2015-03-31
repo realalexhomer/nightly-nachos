@@ -27,7 +27,7 @@
         <h3>{{nacho.title}}</h3>
       </div>
 <!--       <div ng-repeat="tag in nacho.tags" class="nacho-tags">
-        <p>{{tag}}</p> 
+        <p>{{tag}}</p>
       </div> -->
       <div class="nacho-photos">
         <div ng-repeat="photo in nacho.photos" class="nacho-thumbs">
@@ -37,6 +37,7 @@
       <div class="nacho-description">
         <p>{{nacho.description}}</p>
       </div>
+      <p><span class="tag" ng-repeat="tag in nacho.tags">{{tag}}</span></p>
       <button ng-click="nachoCtrl.newComment()">comment</button>
       <div ng-show="nachoCtrl.commenting">
         <textarea ng-model="nachoCtrl.comment"></textarea>
@@ -71,7 +72,7 @@
     <form ng-show= "nachoCtrl.editing" ng-submit="nachoCtrl.editNacho(nachoCtrl.nachoToEdit)">
       Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nachoToEdit.title" required>
       Description: <input type="text" name="description" ng-model="nachoCtrl.nachoToEdit.description" required>
-      Tags: <input type="text" name="tags" ng-model="nachoCtrl.nachoToEdit.tags" required>
+      Tags: <input type="text" name="tags" ng-model="nachoCtrl.nachoToEdit.tags" >
       photos: <input type="text" name="photos" ng-model="nachoCtrl.nachoToEdit.photos" required>
       <input type="submit" id="submit" value="Edit" />
     </form>
@@ -79,11 +80,13 @@
 
   </ul>
 
-    <modal-dialog show='modalShown' width='960px' height='80å%'>
+    <modal-dialog show='modalShown' width='960px' height='80%'>
         <form ng-submit="nachoCtrl.submit()">
     Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
     Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
-    Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags" required><br>
+    Tags: <input type="text" name="tags" ng-model="nachoCtrl.tag"><br>
+    <button ng-click="nachoCtrl.addTag(nachoCtrl.tag)">add tag</button>
+    <p><span class="tag" ng-repeat="tag in nachoCtrl.nacho.tags">{{tag}}</span></p>
     photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required><br>
     <input type="submit" id="submit" value="Submit" />
     </modal-dialog>
