@@ -5,6 +5,14 @@ body {
   color: white;
 }
 
+input, select, textarea{
+    color: #ff0000 !important;
+}
+
+textarea:focus, input:focus {
+    color: #ff0000 !important;
+}
+
 .header {
   height: 60px;
   margin: 0;

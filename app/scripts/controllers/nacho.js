@@ -31,7 +31,15 @@ angular.module('nightlynachosApp')
       }
     };
 
+
+    function strToArray(str){
+      var array = string.split(', ');
+      return array;
+    }
+
     function postNacho(newNacho) {
+
+      newNacho.pictures = strToArray(newNacho.pictures);
 
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
