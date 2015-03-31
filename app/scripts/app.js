@@ -19,13 +19,5 @@ angular.module('nightlynachosApp', [
     'firebase.utils',
     'simpleLogin',
     'angularFileUpload',
-    'ngAria',
-    'ngMaterial',
     'simpleLogin'
-  ]).config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
-    .primaryPalette('blue-grey')
-    .accentPalette('blue-grey')
-    .backgroundPalette('blue-grey')
-});
->>>>>>> asdf
+  ])
