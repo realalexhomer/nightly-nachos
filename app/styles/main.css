@@ -1,12 +1,28 @@
 /* Space out content a bit */
-body {
+body, html{
   padding-bottom: 20px;
   margin: 0;
-  background-image: url("/images/night-background.png");
   color: white;
 }
 
+.layout-fill {
+  position: absolute;
+  /*z-index: -1;*/
+}
 
+img.bg {
+  /*z-index: -1;*/
+
+  min-height: 100%;
+  min-width: 1024px;
+
+  width: 100%;
+  height: auto;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 .header {
   height: 60px;
   margin: 0;
@@ -17,10 +33,18 @@ body {
   background:rgba(0,0,0,0.5);
   border-bottom: 3px solid white;
   padding: 0;
-  position: fixed;
 }
 
-.nav {
+.nav li {
+  display: inline;
+}
+.nav-header {
+  font-size: 30px;
+  font-family: 'Fredericka the Great', cursive;
+  font-color: white;
+}
+
+/*.nav {
   position: relative;
 }
 
@@ -38,6 +62,7 @@ body {
   text-decoration: none;
 }
 
+
 .nav li h1 {
   color: white;
   position: absolute;
@@ -46,7 +71,7 @@ body {
   font-family: 'Fredericka the Great', cursive;
   transform: translate(-50%, 0);
 }
-
+*/
 .main-container {
   margin-top: 60px;
   padding: 20px;

@@ -7,7 +7,6 @@ angular.module('nightlynachosApp')
 
     var self = this;
 
-
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });
@@ -29,4 +28,15 @@ angular.module('nightlynachosApp')
             }
         }
     };
+
+    self.showNewNacho = function() {
+      console.log('nacho nacho nacho')
+    }
+
+    $scope.awesomeThings = [
+      'Anna',
+      'Alex',
+      'Nachos'
+    ];
+
   }]);

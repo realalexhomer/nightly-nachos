@@ -15,27 +15,36 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nacho.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="nightlynachosApp" ng-controller="MainCtrl">
+  <body ng-app="nightlynachosApp" ng-controller="MainCtrl as main">
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <md-content>
+    <div layout-fill>
+    <img src="/images/night-background.png" class="bg" alt="/images/night-background.png"></img>
     <div class="header">
-        <ul class="nav">
-          <li class="active"><a ng-href="#"><i class="fa fa-home fa-5"></i></a></li>
+      <md-toolbar>
+        <ul class="md-toolbar nav">
+          <li class="active"><a ng-href="#/"><i class="fa fa-home fa-5"></i></a></li>
           <!-- //angularfire -->
           <li><a ng-href="#/chat"><i class="fa fa-weixin fa-5"></i></a></li>
           <li>
             <a ng-hide-auth="" href="#/login">LOG IN</a>
             <a ng-show-auth="" href="#/account">ACCOUNT</a>
+            <a ng-show-auth="" ng-click="main.showNewNacho()">NEW NACHO</a>
+            <a class="nav-header">Nightly Nachos</a>
           </li>
-          <li><h1 class="text-muted">Nightly Nachos</h1></li>
+<!--           <li><h1 class="text-muted">Nightly Nachos</h1></li> -->
         </ul>
+      </md-toolbar>
     </div>
     <div class="main-container">
 
@@ -46,6 +55,8 @@
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team, and from Firebase</p>
       </div> -->
     </div>
+  </div>
+  </md-content>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -78,6 +89,8 @@
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
