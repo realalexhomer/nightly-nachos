@@ -29,8 +29,10 @@
 <!--       <div ng-repeat="tag in nacho.tags" class="nacho-tags">
         <p>{{tag}}</p> 
       </div> -->
-      <div ng-repeat="photo in nacho.photos" class="nacho-photos">
-        <img src="{{photo}}"><br>
+      <div class="nacho-photos">
+        <div ng-repeat="photo in nacho.photos" class="nacho-thumbs">
+          <img ng-click="nachoCtrl.featurePhoto(nacho, photo)" src="{{photo}}"><br>
+        </div>
       </div>
       <div class="nacho-description">
         <p>{{nacho.description}}</p>
