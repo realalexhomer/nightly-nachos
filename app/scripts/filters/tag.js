@@ -3,8 +3,9 @@
 angular.module('nightlynachosApp')
   .filter('sortTags', function() {
     return function(item, tag) {
-      return angular.isArray(items)? items.slice().reverse() : [];
+      return item if item.tags.indexOf(tag) > -1;
+      // return angular.isArray(items)? items.slice().reverse() : [];
     };
   });
 
-"nacho in nachoCtrl.nachos"
+// "nacho in nachoCtrl.nachos"
