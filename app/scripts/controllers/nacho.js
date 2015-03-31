@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', 'simpleLogin', 'fbutil', 'validations', '$timeout',
-    function ($scope, simpleLogin, fbutil, validations, $timeout) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 
+    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
 
     var user = simpleLogin.user
     if (!simpleLogin.user) console.log('you imposter')
@@ -31,7 +31,15 @@ angular.module('nightlynachosApp')
       }
     };
 
+
+    function strToArray(str){
+      var array = string.split(', ');
+      return array;
+    }
+
     function postNacho(newNacho) {
+
+      newNacho.pictures = strToArray(newNacho.pictures);
 
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
@@ -96,5 +104,12 @@ angular.module('nightlynachosApp')
       }
       return toReturn;
     }
+
+    /* Modal */
+
+  $scope.modalShown = false;
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
 
 }]);

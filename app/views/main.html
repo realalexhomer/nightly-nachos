@@ -1,5 +1,6 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
 
+  <button ng-click='toggleModal()'>Open Modal Dialog</button>
 
   <div class="nachos-wrapper seven columns">
     <form ng-submit="nachoCtrl.submit()" ng-show="nachoCtrl.newNacho">
@@ -20,11 +21,20 @@
     <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
   </div>
   </form>
+
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
-      <h3>{{nacho.title}}</h3>
-      <p>{{nacho.description}}</p>
-      <p>{{nacho.tags}}</p>
-      <img src="{{nacho.photos}}"><br>
+      <div class="nacho-header">
+        <h3>{{nacho.title}}</h3>
+      </div>
+<!--       <div ng-repeat="tag in nacho.tags" class="nacho-tags">
+        <p>{{tag}}</p> 
+      </div> -->
+      <div ng-repeat="photo in nacho.photos" class="nacho-photos">
+        <img src="{{photo}}"><br>
+      </div>
+      <div class="nacho-description">
+        <p>{{nacho.description}}</p>
+      </div>
       <button ng-click="nachoCtrl.newComment()">comment</button>
       <div ng-show="nachoCtrl.commenting">
         <textarea ng-model="nachoCtrl.comment"></textarea>
@@ -66,5 +76,14 @@
 
 
   </ul>
+
+    <modal-dialog show='modalShown' width='960px' height='80å%'>
+        <form ng-submit="nachoCtrl.submit()">
+    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
+    Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
+    Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags" required><br>
+    photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required><br>
+    <input type="submit" id="submit" value="Submit" />
+    </modal-dialog>
 
 </div>
