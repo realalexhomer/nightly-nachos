@@ -20,11 +20,20 @@
     <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
   </div>
   </form>
+
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
-      <h3>{{nacho.title}}</h3>
-      <p>{{nacho.description}}</p>
-      <p>{{nacho.tags}}</p>
-      <img src="{{nacho.photos}}"><br>
+      <div class="nacho-header">
+        <h3>{{nacho.title}}</h3>
+      </div>
+<!--       <div ng-repeat="tag in nacho.tags" class="nacho-tags">
+        <p>{{tag}}</p> 
+      </div> -->
+      <div ng-repeat="photo in nacho.photos" class="nacho-photos">
+        <img src="{{photo}}"><br>
+      </div>
+      <div class="nacho-description">
+        <p>{{nacho.description}}</p>
+      </div>
       <button ng-click="nachoCtrl.newComment()">comment</button>
       <div ng-show="nachoCtrl.commenting">
         <textarea ng-model="nachoCtrl.comment"></textarea>
