@@ -19,6 +19,5 @@ angular.module('nightlynachosApp', [
     'firebase.utils',
     'simpleLogin',
     'angularFileUpload',
-    'simpleLogin',
-    'angularModalService'
+    'simpleLogin'
   ])

@@ -15,3 +15,11 @@ angular.module('nightlynachosApp')
 
   });
 
+// ModalService.showModal({
+//   templateUrl: "partials/new-nacho-modal.html",
+//   controller: "NachoListCtrl",
+//   inputs: {
+//     name: "Fry",
+//     year: 3001
+//   }
+// })

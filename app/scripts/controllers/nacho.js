@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 'ModalService',
-    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout, ModalService) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 
+    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
 
     var user = simpleLogin.user
     if (!simpleLogin.user) console.log('you imposter')
@@ -96,5 +96,12 @@ angular.module('nightlynachosApp')
       }
       return toReturn;
     }
+
+    /* Modal */
+
+  $scope.modalShown = false;
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
 
 }]);

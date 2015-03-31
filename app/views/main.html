@@ -1,5 +1,6 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
 
+  <button ng-click='toggleModal()'>Open Modal Dialog</button>
 
   <div class="nachos-wrapper seven columns">
     <form ng-submit="nachoCtrl.submit()" ng-show="nachoCtrl.newNacho">
@@ -75,5 +76,9 @@
 
 
   </ul>
+
+    <modal-dialog show='modalShown' width='400px' height='60%'>
+      <p>Modal Content Goes here<p>
+    </modal-dialog>
 
 </div>
