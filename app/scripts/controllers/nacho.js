@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout',
-    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 'ModalService',
+    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout, ModalService) {
 
     var user = simpleLogin.user
     if (!simpleLogin.user) console.log('you imposter')
