@@ -26,7 +26,7 @@
      Search: <input ng-model="query">
     </div>
 
-    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
+    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:query">
       <div class="nacho-header">
         <h3>{{nacho.title}}</h3>
       </div>
