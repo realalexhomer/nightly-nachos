@@ -5,12 +5,17 @@ angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 
     function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
 
-    var user = simpleLogin.user
-    if (!simpleLogin.user) console.log('you imposter')
-      
     var self = this;
 
+    var user = simpleLogin.user;
+    self.user = simpleLogin.user;
+    console.log(self.user)
+    
+    if (!simpleLogin.user) console.log('you imposter')
+      
+
     var comment = "";
+    
     self.commenting = false;
 
     var ref = fbutil.ref();
@@ -85,7 +90,9 @@ angular.module('nightlynachosApp')
       comment = {
         text: commentStr,
         userId: user.uid,
-        nachoId: nacho.$id
+        nachoId: nacho.$id,
+        userPhoto: user.photo || DEFAULT_USER_PHOTO,
+        color: comment.color || 'green'
       }
       commentRef.push(comment);
     }
@@ -108,7 +115,7 @@ angular.module('nightlynachosApp')
       return toReturn;
     }
 
-    self.featurePhoto =function(nacho, photo){
+    self.featurePhoto = function(nacho, photo){
       nacho.featuredPhoto = photo;
     };
 
