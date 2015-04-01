@@ -22,7 +22,11 @@
   </div>
   </form>
 
-    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | sortTags: MainCtrl.tag">
+    <div class="two columns">
+     Search: <input ng-model="query">
+    </div>
+
+    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos">
       <div class="nacho-header">
         <h3>{{nacho.title}}</h3>
       </div>
