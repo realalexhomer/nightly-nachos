@@ -20,7 +20,7 @@ textarea:focus, input:focus {
   width: 100%;
   list-style-type: none;
 /*  background:#7f7f7f;*/
-  background:rgba(0,0,0,0.3);
+  background-color: black;
 /*  border-bottom: 3px solid white;*/
   padding: 0;
   position: fixed;
