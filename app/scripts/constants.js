@@ -1,0 +1,1 @@
+DEFAULT_USER_PHOTO = "http://d2po17o2y4vue7.cloudfront.net/uploads/menu_group/image/5/grid_3_CHEESE_NACHOS.png"
