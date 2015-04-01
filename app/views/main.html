@@ -9,6 +9,7 @@
     </div>
 
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:query">
+
       <div class="nacho-header">
         <h3>{{nacho.title}}</h3>
       </div>
@@ -25,6 +26,7 @@
       </div>
 
     </div>
+
       <div class="nacho-description"> 
         <p>{{nacho.description}}</p>
       </div>
@@ -35,6 +37,7 @@
         <textarea ng-model="nachoCtrl.comment"></textarea>
         <button ng-click="nachoCtrl.addComment(nacho, nachoCtrl.comment)">submit comment</button>
       </div>
+
       <div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
       <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button> 
       <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
@@ -64,6 +67,7 @@
     </ul>
 
     <p class="alert alert-danger" ng-show="err">{{err}}</p>
+    
   </div>
 
 
