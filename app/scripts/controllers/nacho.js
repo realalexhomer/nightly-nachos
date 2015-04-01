@@ -12,12 +12,6 @@ angular.module('nightlynachosApp')
     console.log(self.user)
     
     if (!simpleLogin.user) console.log('you imposter')
-<<<<<<< HEAD
-
-    var self = this;
-=======
-      
->>>>>>> add comment picture and color, add auth required for post crud, break comment div (now appears at bottom for some reason)
 
     self.nacho = {};
 
