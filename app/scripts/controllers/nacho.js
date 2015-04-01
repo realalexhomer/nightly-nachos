@@ -10,7 +10,7 @@ angular.module('nightlynachosApp')
     var user = simpleLogin.user;
     self.user = simpleLogin.user;
     console.log(self.user)
-    
+
     if (!simpleLogin.user) console.log('you imposter')
 
     self.nacho = {};
@@ -26,7 +26,7 @@ angular.module('nightlynachosApp')
     }
 
     var comment = "";
-    
+
     self.commenting = false;
 
     var ref = fbutil.ref();
@@ -138,3 +138,4 @@ angular.module('nightlynachosApp')
   };
 
 }]);
+

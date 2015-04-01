@@ -81,6 +81,11 @@ angular.module('nightlynachosApp')
         templateUrl: 'views/chat.html',
         controller: 'ChatCtrl'
       })
+
+      .when('/nachos/:nachoId', {
+         templateUrl: 'views/partials/nacho-detail.html',
+         controller: 'NachoDetailCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
