@@ -2,13 +2,25 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout',
     function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
 
     var user = simpleLogin.user
     if (!simpleLogin.user) console.log('you imposter')
-      
+
     var self = this;
+
+    self.nacho = {};
+
+    self.nacho.tags = [];
+
+    self.addTag = function(tag) {
+      if (tag.length){
+        self.nacho.tags.push(tag);
+        console.log(self.nacho.tags);
+        self.tag = "";
+      }
+    }
 
     var comment = "";
     self.commenting = false;
@@ -97,7 +109,7 @@ angular.module('nightlynachosApp')
       }, 5000);
     }
 
-    console.log("self.comments:", self.comments); 
+    console.log("self.comments:", self.comments);
 
 
     self.findComments = function(arr, nacho){

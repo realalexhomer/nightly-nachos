@@ -6,7 +6,7 @@ angular.module('nightlynachosApp')
    function($scope, fbutil, $upload) {
 
     var self = this;
-
+    // self.tag = 'nacho'
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });

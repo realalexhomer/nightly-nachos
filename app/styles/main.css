@@ -159,3 +159,9 @@ textarea:focus, input:focus {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+.tag {
+  border: solid white 1px;
+  padding: 5px;
+  margin: 5px;
+}
