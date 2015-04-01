@@ -3,58 +3,55 @@
   <button ng-click='toggleModal()'>Open Modal Dialog</button>
 
   <div class="nachos-wrapper seven columns">
-    <form ng-submit="nachoCtrl.submit()" ng-show="nachoCtrl.newNacho">
-    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
-    Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
-    Tags: <input type="text" name="tags" ng-model="nachoCtrl.nacho.tags"><br>
-    photos: <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required><br>
-    <input type="submit" id="submit" value="Submit" />
-
-  <div ng-controller="MainCtrl">
-    watching model:
-    <div class="button" ng-file-select ng-model="files">Upload using model $watch</div>
-    <div class="button" ng-file-select ng-file-change="upload($files)">Upload on file change</div>
-    Drop File:
-    <div ng-file-drop ng-model="files" class="drop-box"
-        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
-        accept=".jpg,.png,.pdf">Drop Images or PDFs files here</div>
-    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
-  </div>
-  </form>
 
     <div class="two columns">
      Search: <input ng-model="query">
     </div>
 
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:query">
+
       <div class="nacho-header">
         <h3>{{nacho.title}}</h3>
       </div>
-<!--       <div ng-repeat="tag in nacho.tags" class="nacho-tags">
-        <p>{{tag}}</p>
-      </div> -->
+
       <div class="nacho-photos">
-        <div ng-repeat="photo in nacho.photos" class="nacho-thumbs">
-          <img ng-click="nachoCtrl.featurePhoto(nacho, photo)" src="{{photo}}"><br>
+        <div class="nacho-thumbs">
+        <div ng-repeat="photo in nacho.photos">
+          <img ng-click="nachoCtrl.featurePhoto(nacho, photo)" src="{{photo}}">
         </div>
       </div>
-      <div class="nacho-description">
+
+      <div class="nacho-featured">
+        <img src="{{nacho.featuredPhoto}}">
+      </div>
+
+    </div>
+
+      <div class="nacho-description"> 
         <p>{{nacho.description}}</p>
       </div>
       <p><span class="tag" ng-repeat="tag in nacho.tags">{{tag}}</span></p>
       <button ng-click="nachoCtrl.newComment()">comment</button>
+
       <div ng-show="nachoCtrl.commenting">
         <textarea ng-model="nachoCtrl.comment"></textarea>
         <button ng-click="nachoCtrl.addComment(nacho, nachoCtrl.comment)">submit comment</button>
       </div>
-      <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
+
+      <div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
+      <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button> 
       <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+      </div>
 
-    <div class="comments-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
-      <p>{{comment.text}}</p>
-    </div>
+      <div class="comments-container">
+        <div style="background-color: {{comment.color}}" class="comment-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
+          <div class="circle">
+            <img class="user-comment-thumb" src="{{comment.userPhoto}}">
+          </div>
+          <p class="comment-text">{{comment.text}}</p>
+        </div>
+      </div>
 
-    </div>
   </div>
 
   <div class="chat-div four columns" ng-controller="ChatCtrl">
@@ -70,6 +67,7 @@
     </ul>
 
     <p class="alert alert-danger" ng-show="err">{{err}}</p>
+    
   </div>
 
 

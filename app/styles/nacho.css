@@ -17,8 +17,82 @@
   padding: 20px;
 }
 
-.nach-header h3 {
+.nacho-thumbs {
+  width: 150px;
+  height: 300px;
+  display: inline-block;
+  float: left;
+  padding-right: 15px;
 }
+
+.nacho-thumbs img {
+  padding-right: 20px;
+  width: 150px;
+  height: auto;
+  overflow: hidden;
+  border: none;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+}
+
+.nacho-featured img {
+  max-height: 300px;
+  display: block;
+  padding: 0;
+  margin-right: auto;
+  top: 0;
+  bottom: 0;
+  margin-left: auto;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.comment-text {
+  display: inline-block;
+  padding: 10px;
+}
+
+.user-comment-thumb {
+  max-width: 150px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+}
+
+/*.nacho-featured {
+  max-height: 300px;
+  max-width: 200px;
+}*/
+
+.nacho-photos {
+  min-height: 300px;
+  width: 100%;
+}
+/*.nacho-thumbs {
+  width: 170px;
+  height: 100%;
+}*/
+
+/*.thumbnail img {
+  padding: 0;
+  width: auto;
+  height: auto;
+  border: none;
+/*  margin: -80px -324px;*/
 
 .chat-div {
   background-color: white;
