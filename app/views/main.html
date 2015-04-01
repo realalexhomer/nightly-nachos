@@ -9,25 +9,23 @@
     </div>
 
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:query">
-
       <div class="nacho-header">
         <h3>{{nacho.title}}</h3>
       </div>
 
       <div class="nacho-photos">
         <div class="nacho-thumbs">
-        <div ng-repeat="photo in nacho.photos">
-          <img ng-click="nachoCtrl.featurePhoto(nacho, photo)" src="{{photo}}">
+          <div ng-repeat="photo in nacho.photos">
+            <img ng-click="nachoCtrl.featurePhoto(nacho, photo)" src="{{photo}}">
+          </div>
+        </div>
+
+        <div class="nacho-featured">
+          <img src="{{nacho.featuredPhoto}}">
         </div>
       </div>
 
-      <div class="nacho-featured">
-        <img src="{{nacho.featuredPhoto}}">
-      </div>
-
-    </div>
-
-      <div class="nacho-description"> 
+      <div class="nacho-description">
         <p>{{nacho.description}}</p>
       </div>
       <p><span class="tag" ng-repeat="tag in nacho.tags">{{tag}}</span></p>
@@ -39,10 +37,12 @@
       </div>
 
       <div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
-      <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button> 
+      <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
       <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
       </div>
+    </div>
 
+      <!-- COMMENTS -->
       <div class="comments-container">
         <div style="background-color: {{comment.color}}" class="comment-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
           <div class="circle">
@@ -67,7 +67,7 @@
     </ul>
 
     <p class="alert alert-danger" ng-show="err">{{err}}</p>
-    
+
   </div>
 
 
