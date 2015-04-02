@@ -2,18 +2,19 @@
   <div class="nacho-header">
     <h3>{{nacho.title}}</h3>
   </div>
-  <img class="nacho five columns"
-      ng-src="{{photo}}"
-      ng-repeat="photo in nacho.photos"
-      ng-class="{active:mainImageUrl==photo}">
-  <div class="nacho-photos">
-    <ul class="nacho-thumbs">
-      <li ng-repeat="photo in nacho.photos">
-        <img ng-src="{{photo}}" ng-mouseenter="setImage(photo)">
-      </li>
-    </ul>
-
-  </div>
+  <div class="nacho-images">
+    <img class="nacho"
+        ng-src="{{photo}}"
+        ng-repeat="photo in nacho.photos"
+        ng-class="{active:mainImageUrl==photo}">
+    </div>
+    <div class="nacho-photos">
+      <ul class="nacho-thumbs">
+        <li ng-repeat="photo in nacho.photos">
+          <img ng-src="{{photo}}" ng-click="setImage(photo)">
+        </li>
+      </ul>
+    </div>
 
   <div class="nacho-description twelve columns">
     <p>{{nacho.description}}</p>

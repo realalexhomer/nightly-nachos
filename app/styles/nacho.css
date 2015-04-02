@@ -146,3 +146,25 @@ ul.nacho-thumbs img {
   padding: 1em;
 }
 
+.nacho-images {
+  background-color: white;
+  width: 450px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+}
+
+img.nacho {
+  float: left;
+  margin-right: 3em;
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 2em;
+  width: 400px;
+  display: none;
+}
+
+img.nacho:first-child {
+  display: block;
+}
+
