@@ -1,31 +1,32 @@
-<div class="nacho-header">
-  <h3>{{nacho.title}}</h3>
-</div>
+<div class="eight columns offset-by-one"
+  <div class="nacho-header">
+    <h3>{{nacho.title}}</h3>
+  </div>
+  <img class="nacho five columns" ng-src="{{mainImageUrl}}">
+  <div class="nacho-photos">
+    <ul class="nacho-thumbs">
+      <li ng-repeat="photo in nacho.photos">
+        <img ng-src="{{photo}}" ng-click="setImage(photo)">
+      </li>
+    </ul>
 
-<div class="nacho-photos">
-  <div class="nacho-thumbs">
-    <div ng-repeat="photo in nacho.photos">
-      <img ng-click="nachoCtrl.featurePhoto(nacho, photo)" src="{{photo}}">
-    </div>
   </div>
 
-  <div class="nacho-featured">
-    <img src="{{nacho.featuredPhoto}}">
+  <div class="nacho-description twelve columns">
+    <p>{{nacho.description}}</p>
   </div>
-</div>
+  <div class="twelve columns">
+    <p><span class="tag" ng-repeat="tag in nacho.tags">{{tag}}</span></p>
+    <button ng-click="nachoCtrl.newComment()">comment</button>
+  </div>
 
-<div class="nacho-description">
-  <p>{{nacho.description}}</p>
-</div>
-<p><span class="tag" ng-repeat="tag in nacho.tags">{{tag}}</span></p>
-<button ng-click="nachoCtrl.newComment()">comment</button>
+  <div ng-show="nachoCtrl.commenting">
+    <textarea ng-model="nachoCtrl.comment"></textarea>
+    <button ng-click="nachoCtrl.addComment(nacho, nachoCtrl.comment)">submit comment</button>
+  </div>
 
-<div ng-show="nachoCtrl.commenting">
-  <textarea ng-model="nachoCtrl.comment"></textarea>
-  <button ng-click="nachoCtrl.addComment(nacho, nachoCtrl.comment)">submit comment</button>
-</div>
-
-<div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
-<button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
-<button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+  <div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
+  <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
+  <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+  </div>
 </div>
