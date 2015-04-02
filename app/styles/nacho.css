@@ -118,3 +118,35 @@
 .chat-div ul li {
   border-bottom: 1px solid black;
 }
+
+/*NACHO DETAIL*/
+img.nacho {
+  float: left;
+  margin-right: 3em;
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 2em;
+  width: 400px;
+}
+
+ul.nacho-thumbs {
+  margin: 0;
+  list-style: none;
+}
+
+ul.nacho-thumbs li {
+  border: 1px solid black;
+  display: inline-block;
+  margin: 1em;
+  background-color: white;
+}
+
+ul.nacho-thumbs img {
+  width: 100px;
+  padding: 1em;
+}
+
+.nacho-header h3 {
+  color: purple;
+  border: 2px solid white;
+}
