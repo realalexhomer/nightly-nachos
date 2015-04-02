@@ -1,3 +1,17 @@
+.controls {
+  background-color: green;
+}
+.container, .mix {
+    display: none;
+    border-style:solid;
+    border-color:#000000;
+    padding:10px;
+    margin:10px;
+}
+.controls button, label {
+  display: inline;
+}
+
 .nacho-container {
   background: rgba(0, 54, 54, 0.5);
   position: relative;

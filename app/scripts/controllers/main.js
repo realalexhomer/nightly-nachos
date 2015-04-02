@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('MainCtrl', ['$scope', 'fbutil', '$upload',
-   function($scope, fbutil, $upload) {
+  .controller('MainCtrl', ['$scope', 'fbutil',
+   function($scope, fbutil) {
 
     var self = this;
 

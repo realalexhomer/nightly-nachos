@@ -5,6 +5,11 @@ angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout',
     function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
 
+
+
+    $(function(){
+    $('.container mix').mixItUp();  
+      });
     var self = this;
 
     var user = simpleLogin.user;
@@ -25,6 +30,20 @@ angular.module('nightlynachosApp')
       }
     }
 
+    $scope.categories = ['spicy', 'cheesy']
+    
+    $scope.sampleNachos = [
+    { title : 'test1',
+      category : 'spicy',
+      order : 1
+      },
+
+    { title: 'test2',
+      category : 'cheesy',
+      order: 2
+      }
+    ]
+
     var comment = "";
 
     self.commenting = false;
@@ -34,6 +53,7 @@ angular.module('nightlynachosApp')
     var nachosRef = fbutil.ref().child('nachos');
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
     self.nachos.$loaded().catch(alert);
+    console.log(self.nachos);
 
     var commentRef = fbutil.ref().child('comments');
     self.comments = fbutil.syncArray('comments', {limitToLast: 1000});

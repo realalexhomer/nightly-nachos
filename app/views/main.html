@@ -1,7 +1,30 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
 
 
+  <div class="controls">
+      <label>Filter:</label>
+      <button class="filter" data-filter="all">All</button>
+      <button class="filter" 
+              data-filter=".category-{{category}}" 
+              ng-repeat="category in categories">{{category}}</button>
+      
+      <label>Sort:</label>
+      <button class="sort" data-sort="myorder:asc">Asc</button>
+      <button class="sort" data-sort="myorder:desc">Desc</button>
+      
+<!--       <label>Add:</label> -->
+<!--       <button data-ng-click="add()">Add</button> -->
+    </div>
+  
+    <div id="container" mixitup='mixitup' entities='sampleNachos'>
+    <div    class="mix category-{{sampleNacho.category}}" 
+            data-myorder="{{sampleNacho.order}}" 
+            ng-repeat="sampleNacho in sampleNachos">Nacho: {{sampleNacho.title}}</div>
+    </div>
   <div class="nachos-wrapper seven columns">
+
+
+
   <button ng-click='toggleModal()'>Share Your Recipe</button>
 
     <div class="two columns">
