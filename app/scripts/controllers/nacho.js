@@ -2,19 +2,52 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout',
-    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
+  .controller('NachoListCtrl', ['$scope', '$rootScope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout',
+    function ($scope, $rootScope, $animate, simpleLogin, fbutil, validations, $timeout) {
 
-
-
-    $(function(){
-    $('.container mix').mixItUp();  
-      });
     var self = this;
+    var scope = $scope;
+
+    var nachoContainer = $('.container')
+
+    var ref = fbutil.ref();
+
+    var nachosRef = fbutil.ref().child('nachos');
+    self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
+    self.nachos.$loaded().catch(alert);
+    self.nachos.$loaded().then(function(){
+      nachoContainer.mixItUp();
+    })
+
+    var sayHello =function(){
+      console.log('hi there')
+    }
+
+    self.currentFilter = 'all'
+
+  nachosRef.on("child_added", function(snapshot) {
+    // console.log('HI')
+    var newNacho = snapshot.val()
+    console.log(nachoContainer.mixItUp('getState').$targets)
+    // var domStr = 
+    // "<div class='mix category-' data-myorder=" + newNacho.$id + "ng-repeat='nacho in nachoCtrl.nachos' style='display: inline-block;'>" + newNacho.title + "</div>";
+
+    // nachoContainer.mixItUp('insert', 2, $(domStr), {filter: 'all'})
+
+    // nachoContainer.mixItUp('insert', 0, $(snapshot.val()));
+  });
+
+    self.nachos = fbutil.syncArray('nachos', {limitToLast: 100, optFunc: sayHello})
+    
+
+    var commentRef = fbutil.ref().child('comments');
+    self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
+    self.comments.$loaded().catch(alert);
 
     var user = simpleLogin.user;
     self.user = simpleLogin.user;
     console.log(self.user)
+
 
     if (!simpleLogin.user) console.log('you imposter')
 
@@ -30,9 +63,9 @@ angular.module('nightlynachosApp')
       }
     }
 
-    $scope.categories = ['spicy', 'cheesy']
     
-    $scope.sampleNachos = [
+    $timeout(function () {
+      $scope.sampleNachos = [
     { title : 'test1',
       category : 'spicy',
       order : 1
@@ -40,24 +73,15 @@ angular.module('nightlynachosApp')
 
     { title: 'test2',
       category : 'cheesy',
-      order: 2
+      order: 2,
       }
     ]
+    }, 1000);
+    $scope.categories = ['spicy', 'cheesy']
 
     var comment = "";
 
     self.commenting = false;
-
-    var ref = fbutil.ref();
-
-    var nachosRef = fbutil.ref().child('nachos');
-    self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
-    self.nachos.$loaded().catch(alert);
-    console.log(self.nachos);
-
-    var commentRef = fbutil.ref().child('comments');
-    self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
-    self.comments.$loaded().catch(alert);
 
     self.submit = function() {
       if (self.nacho) {

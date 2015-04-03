@@ -17,14 +17,14 @@
 <!--       <button data-ng-click="add()">Add</button> -->
     </div>
   
-    <div id="container" mixitup='mixitup' entities='nachoCtrl.nachos'>
+    <div ng-if="nachoCtrl.nachos.length > 0"id="container" mixitup='mixitup' entities='nachoCtrl.nachos'>
     <div    class="mix category-{{nacho.category}}" 
-            data-myorder="{{nacho.order}}" 
+            data-myorder="{{nacho.$id}}" 
             ng-repeat="nacho in nachoCtrl.nachos">Nacho: {{nacho.title}}</div>
     </div>
+
   <div class="nachos-wrapper seven columns">
-
-
+    
 
   <button ng-click='toggleModal()'>Share Your Recipe</button>
 
