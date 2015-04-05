@@ -2,11 +2,10 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout',
-    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 'FBURL',
+    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout, FBURL) {
 
     var self = this;
-
     var user = simpleLogin.user;
     self.user = simpleLogin.user;
     console.log(self.user)
@@ -34,10 +33,38 @@ angular.module('nightlynachosApp')
     var nachosRef = fbutil.ref().child('nachos');
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
     self.nachos.$loaded().catch(alert);
+    
 
     var commentRef = fbutil.ref().child('comments');
     self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
     self.comments.$loaded().catch(alert);
+
+    self.findNachoUrl = function(nacho){
+      var url = '/#/nachos/' + nacho.$id;
+      return url;
+    }
+
+    self.findNachoUser = function(nacho){   
+      return fbutil.syncObject('users/' + nacho.userId);
+    }
+
+
+    // function findNachoAuthor(nacho, nachoAuthors){
+    //   var path = 'users/' + nacho.userId;
+    //   var user = fbutil.syncObject(path);
+    //   user.$loaded(function(){
+    //     nachoAuthors[nacho] = user;
+    //   })
+    // }
+
+    // function findNachoAuthors(nachosArr, nachoAuthors){
+    //   for (var i = 0; i < nachosArr.length; i++){
+    //     findNachoAuthor(nachosArr[i], nachoAuthors);
+    //     console.log(nachoAuthors);
+    //   }
+    // }
+
+
 
     self.submit = function() {
       if (self.nacho) {
