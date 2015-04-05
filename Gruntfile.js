@@ -291,6 +291,12 @@ grunt.option('color', false);
       }
     },
 
+    uglify: {
+      options: {
+        mangle: false
+      }
+    },
+
     // Replace Google CDN references
     cdnify: {
       dist: {
