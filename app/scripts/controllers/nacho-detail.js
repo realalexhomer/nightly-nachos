@@ -4,17 +4,19 @@ angular.module('nightlynachosApp').controller
 
   $scope.nachoId = $routeParams.nachoId;
 
-  var path = 'nachos/' + $scope.nachoId
+  var path = 'nachos/' + $scope.nachoId;
 
   $scope.nacho = fbutil.syncObject(path);
-  console.log($scope.nacho)
+  // $scope.mainImageUrl = $scope.nacho.photos[0];
+  console.log($scope.mainImageUrl)
+  $scope.nacho.$loaded(function(){$scope.mainImageUrl=$scope.nacho.photos[0];
+})
 
-  $http.get(path).success(function(data) {
-      $scope.nacho = data;
-      $scope.mainImageUrl = data.photos[0];
-  });
+
 
     $scope.setImage = function(imageUrl) {
       $scope.mainImageUrl = imageUrl;
+      console.log(imageUrl);
+      console.log($scope.mainImageUrl);
     };
 }]);

@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular.module('nightlynachosApp', [
-    'ngAnimate',
+    // 'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -17,6 +17,6 @@ angular.module('nightlynachosApp', [
     'ngTouch',
     'firebase',
     'firebase.utils',
-    'simpleLogin',
-    'nightlyNachosAnimations'
+    'simpleLogin'
+    // 'nightlyNachosAnimations'
   ])

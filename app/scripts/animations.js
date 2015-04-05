@@ -3,6 +3,9 @@ var nachoAnimations = angular.module('nightlyNachosAnimations', ['ngAnimate']);
 nachoAnimations.animation('.nacho', function() {
 
   var animateUp = function(element, className, done) {
+    console.log("AnimateUp")
+    console.log(element[0].currentSrc);
+
     if(className != 'active') {
       return;
     }
@@ -25,6 +28,8 @@ nachoAnimations.animation('.nacho', function() {
   }
 
   var animateDown = function(element, className, done) {
+    console.log("AnimateDown")
+    console.log(element[0].currentSrc)
     if(className != 'active') {
       return;
     }

@@ -161,6 +161,7 @@ img.nacho {
   background-color: white;
   padding: 2em;
   width: 400px;
+  height: auto;
   display: none;
 }
 
