@@ -13,13 +13,13 @@
       <div class="nacho-header">
         <h3><a class="title-link" ng-href="{{nachoCtrl.findNachoUrl(nacho)}}">{{nacho.title}}</a></h3>
       </div>
-      <div class="nacho-image">
+      <div>
         <div>
-          <img src="{{nacho.photos[0]}}">
+          <img class="nacho-image" src="{{nacho.photos[0]}}">
         </div>
       </div>
       <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="nacho-author twelve columns">
-        <h3>{{nachoUser.name}}</h3>
+        <h5>By: {{nachoUser.name}}</h5>
       </div>
     </div>
 
