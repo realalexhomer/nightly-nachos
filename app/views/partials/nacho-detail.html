@@ -4,17 +4,15 @@
   </div>
   <div class="nacho-images">
     <img class="nacho"
-        ng-src="{{photo}}"
+        ng-src="{{mainImageUrl}}"
         ng-repeat="photo in nacho.photos"
         ng-class="{active:mainImageUrl==photo}">
     </div>
-    <div class="nacho-photos">
-      <ul class="nacho-thumbs">
-        <li ng-repeat="photo in nacho.photos">
-          <img ng-src="{{photo}}" ng-click="setImage(photo)">
-        </li>
-      </ul>
-    </div>
+    <ul class="nacho-thumbs">
+      <li ng-repeat="photo in nacho.photos">
+        <img ng-src="{{photo}}" ng-click="setImage(photo)">
+      </li>
+    </ul>
 
   <div class="nacho-description twelve columns">
     <p>{{nacho.description}}</p>
