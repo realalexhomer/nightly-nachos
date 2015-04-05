@@ -165,3 +165,20 @@ textarea:focus, input:focus {
   padding: 5px;
   margin: 5px;
 }
+
+a.title-link {
+  text-decoration: none;
+  color: white;
+}
+
+a.title-link:hover {
+  color: white;
+}
+
+a.title-link:visited {
+  color: white;
+}
+
+.nacho-image {
+  width: 200px;
+}
