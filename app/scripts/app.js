@@ -18,7 +18,5 @@ angular.module('nightlynachosApp', [
     'firebase',
     'firebase.utils',
     'simpleLogin',
-    'angularFileUpload',
-    'simpleLogin',
     'nightlyNachosAnimations'
   ])
