@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', 'validations', '$timeout', 'FBURL',
-    function ($scope, $animate, simpleLogin, fbutil, validations, $timeout, FBURL) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL', 'nightlyNachosParse', 'nightlyNachosFileUpload',
+    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL, nightlyNachosParse, nightlyNachosFileUpload) {
 
     var self = this;
     var user = simpleLogin.user;
@@ -12,9 +12,20 @@ angular.module('nightlynachosApp')
 
     if (!simpleLogin.user) console.log('you imposter')
 
-    self.nacho = {};
+    self.clearForm = function(){
+      var defaultForm = {
+        title       : "",
+        description : "",
+        tags        : [],
+        photos      : [],
+      };
 
-    self.nacho.tags = [];
+      self.nacho = defaultForm;
+      self.nachoFiles = [];
+      self.tag = "";
+    }
+
+    self.clearForm();
 
     self.addTag = function(tag) {
       if (tag.length){
@@ -48,29 +59,16 @@ angular.module('nightlynachosApp')
       return fbutil.syncObject('users/' + nacho.userId);
     }
 
-
-    // function findNachoAuthor(nacho, nachoAuthors){
-    //   var path = 'users/' + nacho.userId;
-    //   var user = fbutil.syncObject(path);
-    //   user.$loaded(function(){
-    //     nachoAuthors[nacho] = user;
-    //   })
-    // }
-
-    // function findNachoAuthors(nachosArr, nachoAuthors){
-    //   for (var i = 0; i < nachosArr.length; i++){
-    //     findNachoAuthor(nachosArr[i], nachoAuthors);
-    //     console.log(nachoAuthors);
-    //   }
-    // }
-
-
-
     self.submit = function() {
       if (self.nacho) {
         self.nacho.userId = user.uid;
         console.log('nacho submitted:', self.nacho)
-        postNacho(self.nacho);
+        nightlyNachosParse.postFiles(self.nachoFiles);
+        // .then(
+          // function(){
+          //   postNacho(self.nacho);
+          //   $scope.toggleModal();
+          // })
       }
     };
 
@@ -89,6 +87,7 @@ angular.module('nightlynachosApp')
       newNacho.featuredPhoto = newNacho.photos[0];
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
+        self.clearForm();
       }
     }
 
@@ -157,12 +156,18 @@ angular.module('nightlynachosApp')
       nacho.featuredPhoto = photo;
     };
 
-    /* Modal */
+    /* Modal && File Upload */
 
-  $scope.modalShown = false;
-  $scope.toggleModal = function() {
-    $scope.modalShown = !$scope.modalShown;
-  };
+    $scope.modalShown = false;
+
+    $scope.toggleModal = function() {
+      $scope.modalShown = !$scope.modalShown;
+      $("#new-nacho-file-input").change(function() {
+        console.log(this.files);
+      })
+    }
+
+
 
 }]);
 
