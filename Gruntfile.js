@@ -293,7 +293,7 @@ grunt.option('color', false);
 
     uglify: {
       options: {
-        mangle: false
+        mangle: false 
       }
     },
 
