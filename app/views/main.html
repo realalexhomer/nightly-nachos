@@ -17,23 +17,25 @@
           <a class="title-link inline" ng-href="{{nachoCtrl.findNachoUrl(nacho)}}">{{nacho.title}}</a>
         </h3>
 
-        <span class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
-          <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
-          <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
-        </span>
-
-        <button class="inline right-hdr-button" ng-if="nachoCtrl.user" ng-click="nachoCtrl.newComment()">Add comment</button>
 
       </div>
 
-      <div>
+      <div class="nacho-main">
         <div>
           <img class="nacho-image" src="{{nacho.photos[0]}}">
         </div>
-      </div>
 
-      <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="nacho-author twelve columns">
-        <h5>By: {{nachoUser.name}}</h5>
+        <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="twelve columns">
+          <h5>By: {{nachoUser.name}}</h5>
+        </div>
+
+        <div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
+          <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
+          <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+        </div>
+        <button class="inline right-hdr-button" ng-if="nachoCtrl.user" ng-click="nachoCtrl.newComment()">Add comment</button>
+
+
       </div>
 
       <div ng-show="nachoCtrl.commenting">
