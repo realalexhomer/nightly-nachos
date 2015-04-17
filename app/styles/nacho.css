@@ -9,12 +9,24 @@
   width: 100%;
 }
 
+.comments-container {
+
+}
+
 .nacho-header {
   background: #031634;
   border-top-left-radius:25px;
   border-top-right-radius:25px;
   height: 50px;
   padding: 20px;
+}
+
+.inline {
+  display: inline;  
+}
+
+.right-hdr-button {
+  float: right;
 }
 
 .nacho-thumbs {
