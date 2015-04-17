@@ -1,6 +1,6 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
 
-  <button ng-click='toggleModal()'>Add Nacho</button>
+  <button ng-if="nachoCtrl.user" ng-click='toggleModal()'>Add Nacho</button>
 
   <div class="nachos-wrapper seven columns">
 
@@ -9,21 +9,47 @@
      Search: <input ng-model="query">
     </div>
 
-    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:query">
+    <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos |   filter:query">
+
       <div class="nacho-header">
-        <h3><a class="title-link" ng-href="{{nachoCtrl.findNachoUrl(nacho)}}">{{nacho.title}}</a></h3>
+
+        <h3 class="inline">
+          <a class="title-link inline" ng-href="{{nachoCtrl.findNachoUrl(nacho)}}">{{nacho.title}}</a>
+        </h3>
+
+        <span class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
+          <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
+          <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
+        </span>
+
+        <button class="inline right-hdr-button" ng-if="nachoCtrl.user" ng-click="nachoCtrl.newComment()">Add comment</button>
+
       </div>
+
       <div>
         <div>
           <img class="nacho-image" src="{{nacho.photos[0]}}">
         </div>
       </div>
+
       <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="nacho-author twelve columns">
         <h5>By: {{nachoUser.name}}</h5>
       </div>
+
+      <div ng-show="nachoCtrl.commenting">
+        <textarea ng-model="nachoCtrl.comment"></textarea>
+        <button ng-click="nachoCtrl.addComment(nacho, nachoCtrl.comment)">submit comment</button>
+      </div>
+
+      <div ng-class="comments-container">
+        <div style="background-color: {{comment.color}}" class="comment-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
+            <div class="circle">
+              <img class="user-comment-thumb" src="{{comment.userPhoto}}">
+            </div>
+          <p class="comment-text">{{comment.text}}</p>
+        </div>
+      </div>
     </div>
-
-
 
   <!--   <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos | filter:query">
       <div class="nacho-header">
