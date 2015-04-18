@@ -7,51 +7,22 @@
  * Provides rudimentary account management functions.
  */
 angular.module('nightlynachosApp')
-  .controller('AccountCtrl', function ($scope, user, simpleLogin, fbutil, $timeout, nnImageUpload) {
+  .controller('AccountCtrl', function ($scope, user, simpleLogin, fbutil, $timeout) {
+
     $scope.user = user;
     $scope.logout = simpleLogin.logout;
     $scope.messages = [];
     var profile;
     loadProfile(user);
 
-
-    $scope.fileLoaded = function(e) {
-      nnImageUpload.upload(e, $scope.user, 'profile');
+    $scope.showFiles = function(){
+      console.log($scope.loadedFile);
     }
 
-
-
-
-
-    // $scope.fileLoaded = function (e) {
-    //   var tgt = e.target || window.event.srcElement,
-    //       files = tgt.files,
-    //       fileReader;
-
-    //   if (FileReader && files && files.length) {
-    //       fileReader = new FileReader();
-    //       fileReader.onload = function () {
-
-    //           $scope.loadedFile = {
-    //             name: files[0].name,
-    //             img:  fileReader.result,
-    //             user: $scope.user,
-    //             category: 'profile'
-    //           }
-
-    //           $scope.$apply();
-    //       }
-    //       fileReader.readAsDataURL(files[0]);
-    //   } else {
-    //       alert('Real nacho lovers use modern browsers. You will not be able to upload images unless you upgrade your browser.');
-    //   }
-
-    //   //TODO: Send loadedFile to FB & make this a service
-
-    // };
-
-    $scope.showFiles = function(){
-      console.log(nnImageUpload.loadedFile);
+    $scope.uploadFile = function(){
+      var pictureRef = fbutil.ref().child('users/' + user.uid);
+      pictureRef.update({
+        "picture": $scope.loadedFile});
     }
 
     $scope.changePassword = function(oldPass, newPass, confirm) {

@@ -1,6 +1,6 @@
 angular.module('nightlynachosApp').controller
-  ('NachoDetailCtrl', ['$scope', '$animate', '$routeParams', 'simpleLogin', 'fbutil', 'validations', '$timeout', 'FBURL', '$http',
-    function ($scope, $animate, $routeParams, simpleLogin, fbutil, validations, $timeout, FBURL, $http) {
+  ('NachoDetailCtrl', ['$scope', '$animate', '$routeParams', 'simpleLogin', 'fbutil', '$timeout', 'FBURL', '$http',
+    function ($scope, $animate, $routeParams, simpleLogin, fbutil, $timeout, FBURL, $http) {
 
   $scope.nachoId = $routeParams.nachoId;
 

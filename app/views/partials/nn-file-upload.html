@@ -1,0 +1,5 @@
+<img style= "max-width: 200px;"ng-src="{{loadedFile.img}}" alt="" />
+
+<input type="file" value="load" onchange="angular.element(this).scope().fileLoaded(this)" />
+
+<button ng-click="uploadFile()">Save</button>

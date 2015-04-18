@@ -1,13 +1,14 @@
 
 <div>
-  <img ng-src="{{preview}}" alt="" />
-  <input type="file" value="load" onchange="angular.element(this).scope().fileLoaded(this)" />
 
+  <div nn-file-upload></div>
+  
   <form role="form">
     <p class="form-group">
-      <label>Account ID</label>
+      <label>Account ID</label
       <br />{{user.uid}}
     </p>
+
 
     <p class="form-group">
       <label ng-click="showFiles()">Name:</label>
