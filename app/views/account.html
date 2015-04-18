@@ -1,7 +1,7 @@
 
 <div>
-<div>
-  <h3>Profile</h3>
+  <img ng-src="{{preview}}" alt="" />
+  <input type="file" value="load" onchange="angular.element(this).scope().fileLoaded(this)" />
 
   <form role="form">
     <p class="form-group">
@@ -10,7 +10,7 @@
     </p>
 
     <p class="form-group">
-      <label>Name:</label>
+      <label ng-click="showFiles()">Name:</label>
       <input type="text" name="name" ng-model="profile.name" />
     </p>
 

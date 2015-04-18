@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL', 'nightlyNachosParse', 'nightlyNachosFileUpload',
-    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL, nightlyNachosParse, nightlyNachosFileUpload) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL',
+    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL) {
 
     var self = this;
     var user = simpleLogin.user;
