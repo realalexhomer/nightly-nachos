@@ -5,12 +5,31 @@ angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL',
     function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL) {
 
-    var self = this;
-    var user = simpleLogin.user;
-    self.user = simpleLogin.user;
-    console.log(self.user)
+    // Load Data
 
-    if (!simpleLogin.user) console.log('you imposter')
+    var self = this,
+        user = simpleLogin.user,
+        comment = "",
+        ref = fbutil.ref(),
+        nachosRef = fbutil.ref().child('nachos'),
+        commentRef = fbutil.ref().child('comments'),
+        userRef = fbutil.ref().child('users'),
+        userPhotoCache = {};
+
+    self.nachos = fbutil.syncArray('nachos', {limitToLast: 15});
+    self.nachos.$loaded().catch(alert);
+    
+    self.comments = fbutil.syncArray('comments', {limitToLast: 200});
+    self.comments.$loaded().catch(alert);
+
+    self.user = simpleLogin.user;
+
+    // Load DOM logic
+
+    self.commenting = false;
+    $scope.modalShown = false;
+
+    // Public functions
 
     self.clearForm = function(){
       var defaultForm = {
@@ -19,14 +38,13 @@ angular.module('nightlynachosApp')
         tags        : [],
         photos      : [],
       };
-
       self.nacho = defaultForm;
       self.nachoFiles = [];
       self.tag = "";
     }
 
     self.clearForm();
-
+    
     self.addTag = function(tag) {
       if (tag.length){
         self.nacho.tags.push(tag);
@@ -34,21 +52,6 @@ angular.module('nightlynachosApp')
         self.tag = "";
       }
     }
-
-    var comment = "";
-
-    self.commenting = false;
-
-    var ref = fbutil.ref();
-
-    var nachosRef = fbutil.ref().child('nachos');
-    self.nachos = fbutil.syncArray('nachos', {limitToLast: 100});
-    self.nachos.$loaded().catch(alert);
-    
-
-    var commentRef = fbutil.ref().child('comments');
-    self.comments = fbutil.syncArray('comments', {limitToLast: 1000});
-    self.comments.$loaded().catch(alert);
 
     self.findNachoUrl = function(nacho){
       var url = '/#/nachos/' + nacho.$id;
@@ -72,6 +75,50 @@ angular.module('nightlynachosApp')
       }
     };
 
+    self.showEditor = function(nacho){
+      self.nachoToEdit = nacho;
+      self.editing = !self.editing;
+    };
+
+    self.editNacho = function(nacho){
+      putNacho(nacho);
+      getComment(nacho);
+    };
+
+    self.deleteNacho = function(nacho) {
+      removeNacho(nacho);
+    };
+
+    self.newComment = function(){
+      self.commenting = !self.commenting;
+    }
+
+    self.addComment = function(nacho, comment){
+      postComment(nacho, simpleLogin.user, comment);
+    }
+
+    self.findComments = function(arr, nacho){
+      var toReturn = [];
+      for (var i = 0; i < arr.length; i++){
+        if (arr[i].nachoId === nacho) toReturn.push(arr[i]);
+      }
+      return toReturn;
+    }
+
+    self.featurePhoto = function(nacho, photo){
+      nacho.featuredPhoto = photo;
+    };
+
+    $scope.toggleModal = function() {
+      $scope.modalShown = !$scope.modalShown;
+      $("#new-nacho-file-input").change(function() {
+        console.log(this.files);
+      })
+    }
+
+    // Private functions
+
+
     function strToArray(str){
       var array = [];
       if (/.\, ./g.exec(str)){
@@ -91,36 +138,14 @@ angular.module('nightlynachosApp')
       }
     }
 
-    self.showEditor = function(nacho){
-      self.nachoToEdit = nacho;
-      self.editing = !self.editing;
-    };
-
-    self.editNacho = function(nacho){
-      putNacho(nacho);
-      getComment(nacho);
-    };
-
     function putNacho(nacho) {
       if (typeof nacho.title === 'string') {
         self.nachos.$save(nacho);
       }
     }
 
-    self.deleteNacho = function(nacho) {
-      removeNacho(nacho);
-    };
-
     function removeNacho(nacho) {
       self.nachos.$remove(nacho);
-    }
-
-    self.newComment = function(){
-      self.commenting = !self.commenting;
-    }
-
-    self.addComment = function(nacho, comment){
-      postComment(nacho, simpleLogin.user, comment);
     }
 
     function postComment(nacho, user, commentStr){
@@ -128,10 +153,25 @@ angular.module('nightlynachosApp')
         text: commentStr,
         userId: user.uid,
         nachoId: nacho.$id,
-        userPhoto: user.photo || DEFAULT_USER_PHOTO,
         color: comment.color || 'green'
       }
       commentRef.push(comment);
+    }
+
+    function findCommentUserId(comment){
+      return comment.userId;
+    }
+
+    function findUserPicture(userId){
+      if (userPhotoCache[userId]) {
+        return commentPhotoCache[userId];
+      }else{
+        userRef.once(userId, function(user){
+          var photo = user.picture
+          userPhotoCache[userId] = photo;
+          return photo;
+        })
+      }
     }
 
     function alert(msg) {
@@ -140,34 +180,6 @@ angular.module('nightlynachosApp')
         $scope.err = null;
       }, 5000);
     }
-
-    console.log("self.comments:", self.comments);
-
-
-    self.findComments = function(arr, nacho){
-      var toReturn = [];
-      for (var i = 0; i < arr.length; i++){
-        if (arr[i].nachoId === nacho) toReturn.push(arr[i]);
-      }
-      return toReturn;
-    }
-
-    self.featurePhoto = function(nacho, photo){
-      nacho.featuredPhoto = photo;
-    };
-
-    /* Modal && File Upload */
-
-    $scope.modalShown = false;
-
-    $scope.toggleModal = function() {
-      $scope.modalShown = !$scope.modalShown;
-      $("#new-nacho-file-input").change(function() {
-        console.log(this.files);
-      })
-    }
-
-
 
 }]);
 
