@@ -9,7 +9,6 @@ angular.module('nightlynachosApp')
     var self = this,
         user = simpleLogin.user,
         comment = "",
-
         ref = fbutil.ref(),
         nachosRef = fbutil.ref().child('nachos'),
         commentRef = fbutil.ref().child('comments'),
@@ -23,26 +22,20 @@ angular.module('nightlynachosApp')
 
     self.user = simpleLogin.user;
 
-    // Load DOM logic
+
 
     self.commenting = false;
     $scope.modalShown = false;
 
-    // Public functions for directive
+
 
     $scope.saveFileToNacho = function(){
-                if(!$scope.$$phase) { //TODO: FIGURE OUT WHY
-            $scope.$digest();
-          };
-      console.log('firin');
-      console.log($scope.loadedFile);
       $scope.loadedFile.timestamp = Date.now().toString();
+      $scope.loadedFile.user = self.user;
       if (!$scope.photos){$scope.photos = [];};
       $scope.photos.push($scope.loadedFile);
-      console.log($scope.photos);
     }
 
-    // Public functions for controller
 
     self.clearForm = function(){
       var defaultForm = {
@@ -141,8 +134,8 @@ angular.module('nightlynachosApp')
     }
 
     function postNacho(newNacho) {
-      console.log($scope.photos);
       newNacho.photos = $scope.photos;
+      console.log(newNacho);
       // newNacho.photos = strToArray(newNacho.photos);
       newNacho.featuredPhoto = newNacho.photos[0];
       if (typeof newNacho.title === 'string') {
@@ -180,7 +173,7 @@ angular.module('nightlynachosApp')
         pictureRef.once("value", function(userSnapshot){
           var photo = userSnapshot.val().picture;
           self.userPhotoCache[userId] = photo;
-          if(!$scope.$$phase) { //TODO: FIGURE OUT WHY
+          if(!$scope.$$phase) { //TODO: FIGURE OUT WHY WE NEED TO MANUALLY DIGEST HERE AND HOPEFULLY FIX IT
             $scope.$digest();
           };
           return photo;

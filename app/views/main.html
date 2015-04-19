@@ -4,7 +4,6 @@
 
   <div class="nachos-wrapper seven columns">
 
-
     <div ng-click="test()"class="two columns">
      Search: <input ng-model="query">
     </div>
@@ -12,17 +11,14 @@
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos |   filter:query">
 
       <div class="nacho-header">
-
         <h3 class="inline">
           <a class="title-link inline" ng-href="{{nachoCtrl.findNachoUrl(nacho)}}">{{nacho.title}}</a>
         </h3>
-
-
       </div>
 
       <div class="nacho-main">
         <div>
-          <img class="nacho-image" src="{{nacho.photos[0]}}">
+          <img class="nacho-image" src="{{nacho.photos[0].img || nacho.photos[0]}}">
         </div>
 
         <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="twelve columns">
@@ -34,7 +30,6 @@
           <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
         </div>
         <button class="inline right-hdr-button" ng-if="nachoCtrl.user" ng-click="nachoCtrl.newComment()">Add comment</button>
-
 
       </div>
 
@@ -126,17 +121,17 @@
 
 
   </ul>
-
-    <modal-dialog show='modalShown' width='960px' height='80%'>
+    <modal-dialog show='modalShown' width='960px' height='90%'>
       <form>
+        <button ng-click='hideModal()'>test</button>
         Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
         Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
         Tags: <input type="text" name="tags" ng-model="nachoCtrl.tag"><br>
         <button ng-click="nachoCtrl.addTag(nachoCtrl.tag)">add tag</button>
         <p><span class="tag" ng-repeat="tag in nachoCtrl.nacho.tags">{{tag}}</span></p>
         photos (from URL): <input type="text" name="photos" ng-model="nachoCtrl.urlPhotos"><br>
-        <div nn-file-upload template-url='views/partials/nn-file-upload-new.html'></div>
         <input type="submit" id="submit" ng-click ="nachoCtrl.submit()" value="Submit"/>
+        <div nn-file-upload template-url='views/partials/nn-file-upload-new.html'></div>
       </form>
     </modal-dialog>
 
