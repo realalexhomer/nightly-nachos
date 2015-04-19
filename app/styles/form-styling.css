@@ -13,5 +13,28 @@
 }
 
 .input-wrapper {
+  width: 60%;
+  float: left;
+}
+.nacho-form input {
+  display: block;
+  background-color: black;
+  color: white !important;
+  border: solid white 2px;
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+}
 
+
+.input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
 }

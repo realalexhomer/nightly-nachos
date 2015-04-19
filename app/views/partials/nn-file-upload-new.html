@@ -1,4 +1,4 @@
-<img style= "max-width: 200px;"ng-src="{{loadedFile.img}}" alt="" />
+<img class="preview" style= "max-width: 200px;"ng-src="{{loadedFile.img}}" alt="" />
 
-<input type="file" value="load" onchange="angular.element(this).scope().fileLoaded(this)" />
+<input class="upload" type="file" value="load" onchange="angular.element(this).scope().fileLoaded(this)" />
 <button ng-click="saveFileToNacho()">Save</button>
