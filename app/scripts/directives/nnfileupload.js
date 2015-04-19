@@ -12,10 +12,13 @@
 angular.module('nightlynachosApp')
   .directive('nnFileUpload', function () {
     return {
-      templateUrl: 'views/partials/nn-file-upload.html',
+      templateUrl: function(elem,attrs) {
+        console.log(elem);
+        console.log(attrs);
+        return attrs.templateUrl || 'views/partials/nn-file-upload.html';
+      },
       restrict: 'A',
       link: function (scope, elm, attrs){
-
         var self = this,
             user = scope.user,
             preview = scope.preview,
@@ -31,6 +34,7 @@ angular.module('nightlynachosApp')
           if (FileReader && files && files.length) {
               fileReader = new FileReader();
               fileReader.onload = function () {
+                // if (files[0].size <= 100000){
 
                   scope.loadedFile = {
                     name: files[0].name,
@@ -40,8 +44,12 @@ angular.module('nightlynachosApp')
                   }
 
                   scope.$apply();
-              }
+                // }else{
+                //   alert('maximum file size is 100kb. Firebase does not give much free data hosting : - (');
+                //   return -1;
+                // }
               fileReader.readAsDataURL(files[0]);
+              }
           } else {
               alert('something wrong, probably ur browser. If not email anna');
           }

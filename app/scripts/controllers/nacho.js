@@ -1,20 +1,19 @@
 'use strict';
 
-
 angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL',
     function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL) {
 
-    // Load Data
+    // Load data
 
     var self = this,
         user = simpleLogin.user,
         comment = "",
+
         ref = fbutil.ref(),
         nachosRef = fbutil.ref().child('nachos'),
         commentRef = fbutil.ref().child('comments'),
-        userRef = fbutil.ref().child('users'),
-        userPhotoCache = {};
+        userRef = fbutil.ref().child('users');
 
     self.nachos = fbutil.syncArray('nachos', {limitToLast: 15});
     self.nachos.$loaded().catch(alert);
@@ -29,7 +28,18 @@ angular.module('nightlynachosApp')
     self.commenting = false;
     $scope.modalShown = false;
 
-    // Public functions
+    // Public functions for directive
+
+    $scope.saveFileToNacho = function(nacho){
+      console.log('firin');
+      console.log($scope.loadedFile);
+      $scope.loadedFile.timestamp = Date.now().toString();
+      if (!$scope.photos){$scope.photos = [];};
+      $scope.photos.push($scope.loadedFile);
+      console.log($scope.photos);
+    }
+
+    // Public functions for controller
 
     self.clearForm = function(){
       var defaultForm = {
@@ -44,7 +54,7 @@ angular.module('nightlynachosApp')
     }
 
     self.clearForm();
-    
+
     self.addTag = function(tag) {
       if (tag.length){
         self.nacho.tags.push(tag);
@@ -65,13 +75,9 @@ angular.module('nightlynachosApp')
     self.submit = function() {
       if (self.nacho) {
         self.nacho.userId = user.uid;
+        // self.nacho.photos = $scope.photos;
+        postNacho(self.nacho);
         console.log('nacho submitted:', self.nacho)
-        nightlyNachosParse.postFiles(self.nachoFiles);
-        // .then(
-          // function(){
-          //   postNacho(self.nacho);
-          //   $scope.toggleModal();
-          // })
       }
     };
 
@@ -79,6 +85,10 @@ angular.module('nightlynachosApp')
       self.nachoToEdit = nacho;
       self.editing = !self.editing;
     };
+
+    self.newComment = function(){
+      self.commenting = !self.commenting;
+    }
 
     self.editNacho = function(nacho){
       putNacho(nacho);
@@ -88,10 +98,6 @@ angular.module('nightlynachosApp')
     self.deleteNacho = function(nacho) {
       removeNacho(nacho);
     };
-
-    self.newComment = function(){
-      self.commenting = !self.commenting;
-    }
 
     self.addComment = function(nacho, comment){
       postComment(nacho, simpleLogin.user, comment);
@@ -116,8 +122,10 @@ angular.module('nightlynachosApp')
       })
     }
 
+    self.findUserPhoto = function(uId){
+      return findUserPicture(uId);
+    }
     // Private functions
-
 
     function strToArray(str){
       var array = [];
@@ -130,7 +138,9 @@ angular.module('nightlynachosApp')
     }
 
     function postNacho(newNacho) {
-      newNacho.photos = strToArray(newNacho.photos);
+      console.log($scope.photos);
+      newNacho.photos = $scope.photos;
+      // newNacho.photos = strToArray(newNacho.photos);
       newNacho.featuredPhoto = newNacho.photos[0];
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
@@ -158,19 +168,20 @@ angular.module('nightlynachosApp')
       commentRef.push(comment);
     }
 
-    function findCommentUserId(comment){
-      return comment.userId;
-    }
-
     function findUserPicture(userId){
-      if (userPhotoCache[userId]) {
-        return commentPhotoCache[userId];
+      if (!self.userPhotoCache) {self.userPhotoCache = {};};
+      if (self.userPhotoCache[userId]) {
+        return self.userPhotoCache[userId];
       }else{
-        userRef.once(userId, function(user){
-          var photo = user.picture
-          userPhotoCache[userId] = photo;
+        var pictureRef = userRef.child(userId);
+        pictureRef.once("value", function(userSnapshot){
+          var photo = userSnapshot.val().picture;
+          self.userPhotoCache[userId] = photo;
+          if(!$scope.$$phase) { //TODO: FIGURE OUT WHY
+            $scope.$digest();
+          };
           return photo;
-        })
+        });
       }
     }
 
