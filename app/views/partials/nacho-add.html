@@ -1,0 +1,15 @@
+  <div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div>
+  <form class='ng-modal-dialog-content' ng-transclude>
+    Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
+    Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
+    Tags: <input type="text" name="tags" ng-model="nachoCtrl.tag"><br>
+    <button ng-click="nachoCtrl.addTag(nachoCtrl.tag)">add tag</button>
+    <p><span class="tag" ng-repeat="tag in nachoCtrl.nacho.tags">{{tag}}</span></p>
+    photos (from URL): <input type="text" name="photos" ng-model="nachoCtrl.urlPhotos"><br>
+    <input type="submit" id="submit" ng-click ="nachoCtrl.submit()" value="Submit"/>
+    <div nn-file-upload template-url='views/partials/nn-file-upload-new.html'></div>
+  </form>
+
+
+
+  </div></div></div>

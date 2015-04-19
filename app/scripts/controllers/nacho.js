@@ -184,7 +184,7 @@ angular.module('nightlynachosApp')
           if(!$scope.$$phase) { //TODO: FIGURE OUT WHY WE NEED TO MANUALLY DIGEST HERE AND HOPEFULLY FIX IT
             $scope.$digest();
           };
-          return photo.img;
+          if (photo) {return photo.img;};
         });
       }
     }
