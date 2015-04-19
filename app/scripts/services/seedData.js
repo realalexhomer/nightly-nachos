@@ -14,7 +14,7 @@ angular.module('nightlynachosApp')
         'simplelogin:6' : "alex-nacho-bw.png"
       }
 
-      , userPhotoPath : '/images/seed/users/'
+      , userPhotoPath : 'images/'
       
     }
   });
