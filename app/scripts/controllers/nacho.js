@@ -4,7 +4,6 @@ angular.module('nightlynachosApp')
   .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL',
     function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL) {
 
-    // Load data
 
     var self = this,
         user = simpleLogin.user,
@@ -23,10 +22,12 @@ angular.module('nightlynachosApp')
     self.user = simpleLogin.user;
 
 
+    // need to put these in directives as they manipulate the DOM:
 
     self.commenting = false;
     $scope.modalShown = false;
 
+    //
 
 
     $scope.saveFileToNacho = function(){
@@ -136,8 +137,7 @@ angular.module('nightlynachosApp')
     function postNacho(newNacho) {
       newNacho.photos = $scope.photos;
       console.log(newNacho);
-      // newNacho.photos = strToArray(newNacho.photos);
-      newNacho.featuredPhoto = newNacho.photos[0];
+      newNacho.featuredPhoto = newNacho.photos[0].timestamp;
       if (typeof newNacho.title === 'string') {
         nachosRef.push(newNacho);
         self.clearForm();
