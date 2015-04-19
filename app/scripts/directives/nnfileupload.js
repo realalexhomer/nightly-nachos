@@ -7,14 +7,10 @@
  * # nnFileUpload
  */
 
-// why does angular have to be so complicated?
-
 angular.module('nightlynachosApp')
   .directive('nnFileUpload', function () {
     return {
       templateUrl: function(elem,attrs) {
-        console.log(elem);
-        console.log(attrs);
         return attrs.templateUrl || 'views/partials/nn-file-upload.html';
       },
       restrict: 'A',
@@ -45,7 +41,7 @@ angular.module('nightlynachosApp')
 
                   scope.$apply();
                 }else{
-                  alert('maximum file size is 100kb. Firebase does not give much free data hosting : - (');
+                  alert('maximum file size is 100kb. Email alex to upgrade to a pro account.');
                   return -1;
                 }
               }
