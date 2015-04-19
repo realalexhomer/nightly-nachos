@@ -1,4 +1,123 @@
-body {
+.header-button {
+  height: 100%;
+}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+/* Side nav */ 
+
+/* Toolbar area */
+
+.menu {
+  background-color: transparent;
+  border: none;
+  height: 38px;
+  margin: 16px;
+  width: 36px;
+}
+
+md-toolbar h1 {
+  margin: auto;
+}
+
+
+/* Primary content area */
+
+#content {
+  overflow: hidden;
+}
+
+#content  {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
+}
+
+#content .md-button.share {
+  background-color: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  margin: 8px auto 16px 0;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}
+
+#content md-icon.avatar {
+  margin-top: 10px;
+}
+
+#content .md-button.share > md-icon {
+  fill:black;
+  width:36px;
+  height:36px;
+}
+
+md-button.menuBtn > md-icon {
+  fill:white;
+  width:24px;
+  height:24px;
+}
+
+#content .md-button.share:active > md-icon {
+  background-color: #dadada;
+  border-radius: 75%;
+  padding:4px;
+  transition: all 100ms ease-out 30ms;
+}
+
+#content img {
+  display: block;
+  height: auto;
+  max-width: 500px;
+}
+
+/* Utils */
+
+.content-wrapper {
+  position: relative;
+}
+
+/* Typography support coming in 0.8.0 */
+
+md-toolbar h1 {
+  font-size: 1.250em;
+  font-weight: 400;
+}
+
+.avatar {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0px;
+  vertical-align: middle;
+  zoom:0.70;
+  transform: translateZ(0);
+  -webkit-transform: scale(0.70);
+  -moz-transform:scale(0.70);
+}
+
+
+md-bottom-sheet  md-icon {
+  margin-right:20px;
+}
+
+span.name {
+  font-weight: bold;
+  font-size:1.1em;
+  padding-left:5px;
+}
+
+
+
+
+/*body {
   padding-bottom: 20px;
   margin: 0;
   background-image: url("/images/night-background.png");
@@ -19,9 +138,9 @@ textarea:focus, input:focus {
   top: 0;
   width: 100%;
   list-style-type: none;
-/*  background:#7f7f7f;*/
+
   background-color: black;
-/*  border-bottom: 3px solid white;*/
+
   padding: 0;
   position: fixed;
   z-index: 1000;
@@ -54,71 +173,10 @@ textarea:focus, input:focus {
   transform: translate(-50%, 0);
 }
 
-.main-container {
-  margin-top: 60px;
-  /*padding: 20px;*/
-}
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
 
-/* Customize container */
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
 .ng-modal-overlay {
-  /* A dark translucent div that covers the whole screen */
+
   position:absolute;
   z-index:9999;
   top:0;
@@ -129,12 +187,10 @@ textarea:focus, input:focus {
   opacity: 0.8;
 }
 .ng-modal-dialog {
-  /* A centered div above the overlay with a box shadow. */
   z-index:10000;
   position: absolute;
-  width: 60%; /* Overridden in nacho.js, this act as a default */
+  width: 60%; 
 
-  /* Center the dialog */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -182,3 +238,4 @@ a.title-link:visited {
 .nacho-image {
   width: 300px;
 }
+*/

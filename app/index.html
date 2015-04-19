@@ -8,6 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <!-- endbower -->
     <!-- endbuild -->
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Fredericka+the+Great|Rye' type='text/css'>
@@ -15,44 +16,57 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/animations.css">
-    <link rel="stylesheet" href="styles/skeleton.css">
+    <!-- <link rel="stylesheet" href="styles/skeleton.css"> -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nacho.css">
     <link rel="stylesheet" href="styles/form-styling.css">
     <!-- endbuild -->
-
   </head>
+  <!-- <md-content> -->
   <body ng-app="nightlynachosApp" ng-controller="MainCtrl as main">
 
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <md-toolbar class="header" layout="row">
+<!--     <md-button class="md-button" aria-label="Home">
+      <a ng-href="#/"><md-icon><i style="color: white" class="fa fa home fa-5"></i></md-icon></a>
+    </md-button> -->
+    <md-button class="md-button header-button">
+      <a ng-hide-auth="" ng-href="#/login"><h4>Log In</h4></a>
+      <a ng-show-auth="" ng-href="#/account"><h4>Account</h4></a>
+    </md-button>
+    <a ng-href="#/"><h2 class="header-title"><span>Nightly Nachos</span></h2></a>
+  </md-toolbar>
+    <div flex layout="row">
+                <md-button ng-click="toggleRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
 
-    <!-- Add your site or application content here -->
+      <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-sidenav-focus>
+          </md-input-container>
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
 
-    <div class="header">
-        <ul class="nav">
-          <li class="active"><a ng-href="#"><i class="fa fa-home fa-5"></i></a></li>
-          <!-- //angularfire -->
-          <li><a ng-href="#/chat"><i class="fa fa-weixin fa-5"></i></a></li>
-          <li>
-            <a ng-hide-auth="" href="#/login">LOG IN</a>
-            <a ng-show-auth="" href="#/account">ACCOUNT</a>
-          </li>
-          <li><h1 class="text-muted">Nightly Nachos</h1></li>
-        </ul>
+        <md-content flex id="content">
+        </md-content>
+
     </div>
-    <div class="main-container">
-
 
       <div ng-view=""></div>
 
-<!--       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team, and from Firebase</p>
-      </div> -->
-    </div>
-
-
+<!-- </md-content> -->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -76,6 +90,8 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>

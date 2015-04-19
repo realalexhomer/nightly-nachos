@@ -2,8 +2,8 @@
 
 
 angular.module('nightlynachosApp')
-  .controller('MainCtrl', ['$scope', 'fbutil',
-   function($scope, fbutil, $upload) {
+  .controller('MainCtrl', ['$scope', 'fbutil', '$mdSidenav',  
+   function($scope, fbutil, $upload, $mdSidenav) {
 
     var self = this;
 
@@ -38,5 +38,27 @@ angular.module('nightlynachosApp')
       'Alex',
       'Nachos'
     ];
+
+    $scope.toggleRight = buildToggler('right');
+    /**
+     * Build handler to open/close a SideNav; when animation finishes
+     * report completion in console
+     */
+    function buildToggler(navID) {
+      return function() {
+        return $mdSidenav(navID).toggle()
+          .then(function () {
+            $log.debug("toggle " + navID + " is done");
+          });
+      }
+    }
+
+    $scope.close = function () {
+      $mdSidenav('right').close()
+        .then(function () {
+          $log.debug("close RIGHT is done");
+        });
+    };
+
 
   }]);

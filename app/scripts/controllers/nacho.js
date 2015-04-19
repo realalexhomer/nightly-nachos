@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL', 'seedData',
-    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL, seedData) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL', 'seedData', '$mdSidenav', '$log',
+    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL, seedData, $mdSidenav, $log) {
 
 
     var self = this,
@@ -196,5 +196,25 @@ angular.module('nightlynachosApp')
       }, 5000);
     }
 
+    $scope.toggleRight = buildToggler('right');
+    /**
+     * Build handler to open/close a SideNav; when animation finishes
+     * report completion in console
+     */
+    function buildToggler(navID) {
+      return function() {
+        return $mdSidenav(navID).toggle()
+          .then(function () {
+            $log.debug("toggle " + navID + " is done");
+          });
+      }
+    }
+
+    $scope.close = function () {
+      $mdSidenav('right').close()
+        .then(function () {
+          $log.debug("close RIGHT is done");
+        });
+    };
 }]);
 

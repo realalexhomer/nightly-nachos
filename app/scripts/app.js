@@ -17,6 +17,6 @@ angular.module('nightlynachosApp', [
     'ngTouch',
     'firebase',
     'firebase.utils',
-    'simpleLogin'
-    // 'nightlyNachosAnimations'
+    'simpleLogin',
+    'ngMaterial' 
   ])

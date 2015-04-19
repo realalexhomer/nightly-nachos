@@ -1,4 +1,21 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-sidenav-focus>
+          </md-input-container>
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
 
   <div class="search-and-add-btn">
 
@@ -7,11 +24,7 @@
     <img class="nacho-gif" src="../images/nacho-gif.gif" ng-if="nachoCtrl.user" ng-click='toggleModal()'/>
   </div>
 
-  <div class="nachos-wrapper seven columns">
-
-    <!-- <div ng-click="test()"class="two columns">
-     Search: <input ng-model="query">
-    </div> -->
+  <div class="nachos-wrapper">
 
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos |   filter:query">
 
@@ -26,7 +39,7 @@
           <img class="nacho-image" src="{{nacho.photos[0].img || nacho.photos[0] || nachoCtrl.findNachoSeedPhoto(nacho)[0]}}">
         </div>
 
-        <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="twelve columns">
+        <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)">
           <h5>By: {{nachoUser.name}}</h5>
         </div>
 
@@ -99,7 +112,7 @@
 
   </div>
 
-  <div class="chat-div four columns" ng-controller="ChatCtrl">
+  <div class="chat-div" ng-controller="ChatCtrl">
     <h2 class="chat">Chat</h2>
 
     <form>
@@ -142,6 +155,12 @@
         </span class="input-wrapper">
       </form>
     </modal-dialog>
+
+        <div flex layout="row">
+                <md-button ng-click="toggleRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
 
 
 
