@@ -9,6 +9,29 @@
   width: 100%;
 }
 
+.search-and-add-btn {
+  height: 100px;
+  padding-left: 100px;
+  padding-bottom: 20px;
+}
+
+.nacho-gif {
+  height: 100px;
+  width: 100px;
+  vertical-align: center;
+  background-color: teal;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  padding-left: 10px;
+}
+
+.nacho-query {
+  position: relative;
+  top: -50%;
+  /*transform: translateY(-50%);*/
+}
+
 .comments-container {
 
 }
