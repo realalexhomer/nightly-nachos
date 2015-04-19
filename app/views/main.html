@@ -23,7 +23,7 @@
 
       <div class="nacho-main">
         <div>
-          <img class="nacho-image" src="{{nacho.photos[0].img || nacho.photos[0]}}">
+          <img class="nacho-image" src="{{nacho.photos[0].img || nacho.photos[0] || nachoCtrl.findNachoSeedPhoto(nacho)[0]}}">
         </div>
 
         <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="twelve columns">

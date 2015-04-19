@@ -69,6 +69,12 @@ angular.module('nightlynachosApp')
       return fbutil.syncObject('users/' + nacho.userId);
     }
 
+    self.findNachoSeedPhoto = function(nacho){
+      if (seedData.nachosPhotos[nacho.$id]) {
+        return seedData.nachosPhotos[nacho.$id];
+      }
+    }
+
     self.submit = function() {
       if (self.nacho) {
         self.nacho.userId = user.uid;
