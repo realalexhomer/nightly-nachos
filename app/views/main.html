@@ -41,7 +41,7 @@
       <div ng-class="comments-container">
         <div style="background-color: {{comment.color}}" class="comment-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
             <div class="circle">
-              <img class="user-comment-thumb" ng-src="{{nachoCtrl.findUserPhoto(comment.userId).img}}">
+              <img class="user-comment-thumb" ng-src="{{nachoCtrl.findUserPhoto(comment.userId)}}">
             </div>
           <p class="comment-text">{{comment.text}}</p>
         </div>

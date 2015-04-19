@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nightlynachosApp')
-  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL',
-    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL) {
+  .controller('NachoListCtrl', ['$scope', '$animate', 'simpleLogin', 'fbutil', '$timeout', 'FBURL', 'seedData',
+    function ($scope, $animate, simpleLogin, fbutil, $timeout, FBURL, seedData) {
 
 
     var self = this,
@@ -167,8 +167,10 @@ angular.module('nightlynachosApp')
     function findUserPicture(userId){
       if (!self.userPhotoCache) {self.userPhotoCache = {};};
       if (self.userPhotoCache[userId]) {
-        return self.userPhotoCache[userId];
-      }else{
+        return self.userPhotoCache[userId].img;
+      }else if (seedData.userPhotos[userId]){
+        return seedData.userPhotoPath + seedData.userPhotos[userId];
+      }else {
         var pictureRef = userRef.child(userId);
         pictureRef.once("value", function(userSnapshot){
           var photo = userSnapshot.val().picture;
@@ -176,7 +178,7 @@ angular.module('nightlynachosApp')
           if(!$scope.$$phase) { //TODO: FIGURE OUT WHY WE NEED TO MANUALLY DIGEST HERE AND HOPEFULLY FIX IT
             $scope.$digest();
           };
-          return photo;
+          return photo.img;
         });
       }
     }
