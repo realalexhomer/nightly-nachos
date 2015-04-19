@@ -1,3 +1,4 @@
+
 .nacho-container {
   background: rgba(0, 54, 54, 0.5);
   position: relative;
@@ -16,6 +17,7 @@
 }
 
 .nacho-gif {
+  /*float: right;*/
   height: 100px;
   width: 100px;
   vertical-align: center;
@@ -23,13 +25,21 @@
   border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
-  padding-left: 10px;
+  margin-left: 600px;
 }
 
 .nacho-query {
   position: relative;
   top: -50%;
   /*transform: translateY(-50%);*/
+}
+
+.nacho-query input {
+  background-color: black;
+  color: white;
+  border: solid white 2px;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .comments-container {
