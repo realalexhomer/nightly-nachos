@@ -32,12 +32,14 @@ angular.module('nightlynachosApp')
               fileReader.onload = function () {
                 if (files[0].size <= 100000){
 
-                  scope.loadedFile = {
+                  scope.$parent.$parent.loadedFile = {
                     name: files[0].name,
                     img:  fileReader.result,
                     user: user,
-                    category: category,
+                    category: category
                   }
+                  
+                  scope.loadedFile = scope.$parent.$parent.loadedFile;
 
                   scope.$apply();
                 }else{

@@ -30,14 +30,11 @@ angular.module('nightlynachosApp')
 
 
     $scope.saveFileToNacho = function(){
-      console.log('firing');
-      console.log($scope.loadedFile);
-      // $scope.loadedFile.timestamp = Date.now().toString();
+      $scope.loadedFile.timestamp = Date.now().toString();
+      $scope.loadedFile.user = self.user;
       if (!$scope.photos){$scope.photos = [];};
       $scope.photos.push($scope.loadedFile);
-      console.log($scope.photos);
     }
-
 
 
     self.clearForm = function(){
@@ -137,8 +134,8 @@ angular.module('nightlynachosApp')
     }
 
     function postNacho(newNacho) {
-      console.log($scope.photos);
       newNacho.photos = $scope.photos;
+      console.log(newNacho);
       // newNacho.photos = strToArray(newNacho.photos);
       newNacho.featuredPhoto = newNacho.photos[0];
       if (typeof newNacho.title === 'string') {
