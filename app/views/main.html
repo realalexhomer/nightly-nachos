@@ -1,9 +1,10 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
 
-  <div>
-    <button ng-if="nachoCtrl.user" ng-click='toggleModal()'>Add Nacho</button>
+  <div class="search-and-add-btn">
 
-    Search: <input ng-model="query">
+    <span class="nacho-query">Search: <input ng-model="query"></span>
+
+    <img class="nacho-gif" src="../images/nacho-gif.gif" ng-if="nachoCtrl.user" ng-click='toggleModal()'/>
   </div>
 
   <div class="nachos-wrapper seven columns">
