@@ -1,12 +1,16 @@
 <div ng-controller="NachoListCtrl as nachoCtrl">
 
-  <button ng-if="nachoCtrl.user" ng-click='toggleModal()'>Add Nacho</button>
+  <div>
+    <button ng-if="nachoCtrl.user" ng-click='toggleModal()'>Add Nacho</button>
+
+    Search: <input ng-model="query">
+  </div>
 
   <div class="nachos-wrapper seven columns">
 
-    <div ng-click="test()"class="two columns">
+    <!-- <div ng-click="test()"class="two columns">
      Search: <input ng-model="query">
-    </div>
+    </div> -->
 
     <div class="nacho-container" ng-repeat="nacho in nachoCtrl.nachos |   filter:query">
 
