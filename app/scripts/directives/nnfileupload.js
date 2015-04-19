@@ -34,7 +34,7 @@ angular.module('nightlynachosApp')
           if (FileReader && files && files.length) {
               fileReader = new FileReader();
               fileReader.onload = function () {
-                // if (files[0].size <= 100000){
+                if (files[0].size <= 100000){
 
                   scope.loadedFile = {
                     name: files[0].name,
@@ -44,12 +44,12 @@ angular.module('nightlynachosApp')
                   }
 
                   scope.$apply();
-                // }else{
-                //   alert('maximum file size is 100kb. Firebase does not give much free data hosting : - (');
-                //   return -1;
-                // }
-              fileReader.readAsDataURL(files[0]);
+                }else{
+                  alert('maximum file size is 100kb. Firebase does not give much free data hosting : - (');
+                  return -1;
+                }
               }
+              fileReader.readAsDataURL(files[0]);
           } else {
               alert('something wrong, probably ur browser. If not email anna');
           }

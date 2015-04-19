@@ -30,7 +30,10 @@ angular.module('nightlynachosApp')
 
     // Public functions for directive
 
-    $scope.saveFileToNacho = function(nacho){
+    $scope.saveFileToNacho = function(){
+                if(!$scope.$$phase) { //TODO: FIGURE OUT WHY
+            $scope.$digest();
+          };
       console.log('firin');
       console.log($scope.loadedFile);
       $scope.loadedFile.timestamp = Date.now().toString();
