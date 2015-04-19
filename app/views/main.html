@@ -5,7 +5,7 @@
   <div class="nachos-wrapper seven columns">
 
 
-    <div class="two columns">
+    <div ng-click="test()"class="two columns">
      Search: <input ng-model="query">
     </div>
 
@@ -46,7 +46,7 @@
       <div ng-class="comments-container">
         <div style="background-color: {{comment.color}}" class="comment-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
             <div class="circle">
-              <img class="user-comment-thumb" src="{{comment.userPhoto}}">
+              <img class="user-comment-thumb" ng-src="{{nachoCtrl.findUserPhoto(comment.userId).img}}">
             </div>
           <p class="comment-text">{{comment.text}}</p>
         </div>
@@ -128,15 +128,15 @@
   </ul>
 
     <modal-dialog show='modalShown' width='960px' height='80%'>
-      <form ng-submit="nachoCtrl.submit()">
+      <form>
         Nacho Title: <input type="text" name="title" ng-model="nachoCtrl.nacho.title" required ng-minlength="10"><br>
         Description: <input type="text" name="description" ng-model="nachoCtrl.nacho.description" required><br>
         Tags: <input type="text" name="tags" ng-model="nachoCtrl.tag"><br>
         <button ng-click="nachoCtrl.addTag(nachoCtrl.tag)">add tag</button>
         <p><span class="tag" ng-repeat="tag in nachoCtrl.nacho.tags">{{tag}}</span></p>
-        photos (from URL): <input type="text" name="photos" ng-model="nachoCtrl.nacho.photos" required><br>
-        photos (upload): <input ng-model="nachoCtrl.nachoFiles" id="new-nacho-file-input" type="file" multiple>
-        <input type="submit" id="submit" value="Submit"/>
+        photos (from URL): <input type="text" name="photos" ng-model="nachoCtrl.urlPhotos"><br>
+        <div nn-file-upload template-url='views/partials/nn-file-upload-new.html'></div>
+        <input type="submit" id="submit" ng-click ="nachoCtrl.submit()" value="Submit"/>
       </form>
     </modal-dialog>
 
