@@ -112,6 +112,18 @@ angular.module('nightlynachosApp')
       nacho.featuredPhoto = photo;
     };
 
+    $scope.modalOrError = function(){
+      if (self.user) {
+        $scope.toggleModal();
+      }else{
+        displayAuthError();
+      }
+    }
+
+    function displayAuthError() {
+      alert('log in to do that');
+    }
+
     $scope.toggleModal = function() {
       $scope.modalShown = !$scope.modalShown;
       $("#new-nacho-file-input").change(function() {

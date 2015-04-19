@@ -4,7 +4,7 @@
 
     <span class="nacho-query"><input ng-model="query" placeholder="Search..."></span>
 
-    <img class="nacho-gif" src="../images/nacho-gif.gif" ng-if="nachoCtrl.user" ng-click='toggleModal()'/>
+    <img class="nacho-gif" src="../images/nacho-gif.gif" ng-disabled="!nachoCtrl.user" ng-click='modalOrError()'/>
   </div>
 
   <div class="nachos-wrapper seven columns">
@@ -34,7 +34,7 @@
           <button ng-click="nachoCtrl.deleteNacho(nacho)">delete</button>
           <button ng-click="nachoCtrl.showEditor(nacho)">edit</button>
         </div>
-        <button class="inline right-hdr-button" ng-if="nachoCtrl.user" ng-click="nachoCtrl.newComment()">Add comment</button>
+        <button class="inline right-hdr-button" ng-disabled="!nachoCtrl.user" ng-click="nachoCtrl.newComment()">Add comment</button>
 
       </div>
 
