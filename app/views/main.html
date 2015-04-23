@@ -27,7 +27,7 @@
         </div>
 
         <div ng-init="nachoUser = nachoCtrl.findNachoUser(nacho)" class="twelve columns">
-          <h5>By: {{nachoUser.name}}</h5>
+          <h4>By: <span class="name-highlight">{{nachoUser.name}}</span></h4>
         </div>
 
         <div class="post-ud" ng-show="nachoCtrl.user.uid == nacho.userId">
@@ -45,9 +45,13 @@
 
       <div ng-class="comments-container">
         <div class="comment-container" ng-repeat="comment in nachoCtrl.findComments(nachoCtrl.comments, nacho.$id )">
-            <div class="circle">
+<!--             <div class="circle">
               <img class="user-comment-thumb" ng-src="{{nachoCtrl.findUserPhoto(comment.userId)}}">
+            </div> -->
+            <div class="thumbnail circle">
+              <img ng-src="{{nachoCtrl.findUserPhoto(comment.userId)}}">
             </div>
+          <h5 class="comment-user-name"><span class="name-highlight">{{comment.userName}}</span> says</h5>
           <p class="comment-text">{{comment.text}}</p>
         </div>
       </div>

@@ -171,7 +171,8 @@ angular.module('nightlynachosApp')
         text: commentStr,
         userId: user.uid,
         nachoId: nacho.$id,
-        color: comment.color || 'green'
+        userName : user.name
+        // color: comment.color || 'green',
       }
       commentRef.push(comment);
     }
